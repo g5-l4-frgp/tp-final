@@ -21,55 +21,59 @@
  
     margin: auto;
  	 }
+ 	 
+ 	    #Fondo{
+        background-color:#020648;
+     }
 </Style>
 <title>Alta de cliente</title>
 </head>
-<body>
+<body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info">Alta de cliente</h1>
+<h1 class="mt-3 text-center mb-1 text-info text-light ">Alta de cliente</h1>
 <form class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Usuario</label>
+      <label for="inputEmail4"class="text-light">Usuario</label>
       <input type="text" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
+      <label for="inputPassword4"class="text-light">Password</label>
       <input type="password" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail">
+      <label for="inputEmail4"class="text-light">Email</label>
+      <input type="Email" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Teléfono</label>
+      <label for="inputPassword4"class="text-light">Teléfono</label>
       <input type="text" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Cuil</label>
+      <label for="inputEmail4"class="text-light">Cuil</label>
       <input type="text" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Dni</label>
+      <label for="inputPassword4"class="text-light">Dni</label>
       <input type="text" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4">Nombre</label>
+      <label for="inputEmail4"class="text-light">Nombre</label>
       <input type="text" class="form-control" id="inputnombre">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4">Apellido</label>
+      <label for="inputPassword4"class="text-light">Apellido</label>
       <input type="text" class="form-control" id="inputApellido">
         </div>
           <div class="form-group col-md-4">
-      <label for="inputState">Sexo</label>
+      <label for="inputState"class="text-light">Sexo</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
         <option>Femenino</option>
@@ -78,17 +82,17 @@
     </div>
       </div>
   <div class="form-group">
-    <label for="inputAddress">Dirección</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Rivadavia 3005">
+    <label for="inputAddress"class="text-light">Dirección</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Juramento 37">
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Ciudad</label>
+      <label for="inputCity"class="text-light">Ciudad</label>
       <input type="text" class="form-control" id="inputCity">
     </div>
  <div class="form-group col-md-6">
-      <label for="inputCity">Localidad</label>
+      <label for="inputCity"class="text-light">Localidad</label>
       <input type="text" class="form-control" id="inputCity">
     </div>
 

@@ -9,6 +9,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
  	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <Style>
  	.Alta{
  	width: 100%;
@@ -18,44 +19,60 @@
  	    }
  	 .crear{
  	  	width: 100%;
- 
-    margin: auto;
+ 		margin: auto;
  	 }
- 	 
+ 	 #inputMonto{
+ 	 	width: 50%;
+ 	 	margin: auto;
+ 	 	
+ 	 }
+ 	 #lblMonto{
+ 	     display: block;
+    	 text-align: center;
+	 } 	 
  	    #Fondo{
         background-color:#020648;
      }
+    
+     #tituloEspacio{
+    	margin-bottom:50px;
+     }
 </Style>
-<title>Transferencia a terceros</title>
+
+<title>Prestamo</title>
 </head>
-<body id="Fondo">
+<body ID="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light ">Transferencia a terceros</h1>
+<h1 class="mt-3 text-center mb-1 text-light" ID="tituloEspacio">Prestamo cliente</h1>
 <form class="Alta">
   <div class="form-row">
            <div class="form-group col-md-6">
-      <label for="inputState"class="text-light">Cuenta de origen</label>
+      <label for="inputState" class="text-light">Cuenta de destino</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
         <option>Opcion 1</option>
         <option>Opcion 2</option>
       </select>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">CBU (Destino)</label>
-      <input type="text" class="form-control" id="inputEmail">
+   <div class="form-group col-md-6">
+      <label for="inputState" class="text-light">Cantidad de cuotas</label>
+      <select id="inputState" class="form-control">
+        <option selected>Seleccionar...</option>
+        <option>Opcion 1</option>
+        <option>Opcion 2</option>
+      </select>
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-12">
-      <label id="lblMonto" for="lblMonto"class="text-light">Monto</label>
+      <label id="lblMonto" for="lblMonto" class="text-light">Monto total</label>
       <input type="text" class="form-control" id="inputMonto">
     </div>
     
   </div>
 
-  <button type="submit" class="btn btn-primary crear mt-2 text-light">Transferir</button>
+  <button type="submit" class="btn btn-primary crear mt-2">Confirmar</button>
 </form>
 </div>
 </body>

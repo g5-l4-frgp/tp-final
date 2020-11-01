@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Modificar cliente</title>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -24,55 +24,59 @@
  
     margin: auto;
  	 }
+ 	 
+ 	    #Fondo{
+        background-color:#020648;
+     }
 </Style>
 <title>Modificar de cliente</title>
 </head>
-<body>
+<body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info">Modificar cliente</h1>
+<h1 class="mt-3 text-center mb-1 text-light">Modificar cliente</h1>
 <form class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Usuario</label>
+      <label for="inputEmail4" class="text-light">Usuario</label>
       <input type="text" class="form-control" id="inputEmail"readonly>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
+      <label for="inputPassword4" class="text-light">Contraseña</label>
       <input type="password" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
+      <label for="inputEmail4" class="text-light">Email</label>
       <input type="email" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Teléfono</label>
+      <label for="inputPassword4" class="text-light">Teléfono</label>
       <input type="text" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Cuil</label>
+      <label for="inputEmail4" class="text-light">Cuil</label>
       <input type="text" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Dni</label>
+      <label for="inputPassword4" class="text-light">Dni</label>
       <input type="text" class="form-control" id="inputPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4">Nombre</label>
+      <label for="inputEmail4" class="text-light">Nombre</label>
       <input type="text" class="form-control" id="inputnombre">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4">Apellido</label>
+      <label for="inputPassword4" class="text-light">Apellido</label>
       <input type="text" class="form-control" id="inputApellido">
         </div>
           <div class="form-group col-md-4">
-      <label for="inputState">Sexo</label>
+      <label for="inputState" class="text-light">Sexo</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
         <option>Femenino</option>
@@ -81,17 +85,17 @@
     </div>
       </div>
   <div class="form-group">
-    <label for="inputAddress">Dirección</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Rivadavia 3005">
+    <label for="inputAddress" class="text-light">Dirección</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="">
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Ciudad</label>
+      <label for="inputCity" class="text-light">Ciudad</label>
       <input type="text" class="form-control" id="inputCity">
     </div>
  <div class="form-group col-md-6">
-      <label for="inputCity">Localidad</label>
+      <label for="inputCity" class="text-light">Localidad</label>
       <input type="text" class="form-control" id="inputCity">
     </div>
 

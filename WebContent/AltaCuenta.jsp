@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
  	
@@ -21,35 +21,39 @@
  
     margin: auto;
  	 }
+ 	 
+ 	    #Fondo{
+        background-color:#020648;
+     }
 </Style>
 <title>Alta de cuenta</title>
 </head>
-<body>
+<body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info">Alta de cuenta</h1>
+<h1 class="mt-3 text-center mb-1 text-info  text-light">Alta de cuenta</h1>
 <form class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Usuario</label>
+      <label for="inputEmail4"class="text-light">Usuario</label>
       <input type="text" class="form-control" id="inputEmail">
     </div>
           <div class="form-group col-md-6">
-      <label for="inputState">Tipo de cuenta</label>
+      <label for="inputState"class="text-light">Tipo de cuenta</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
+        <option>Cuenta Corriente</option>
+        <option>Caja de ahorro</option>
       </select>
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">CBU</label>
+      <label for="inputEmail4"class="text-light">CBU</label>
       <input type="email" class="form-control" id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Saldo</label>
+      <label for="inputPassword4"class="text-light">Saldo</label>
       <input type="text" class="form-control" id="inputPassword">
     </div>
   </div>

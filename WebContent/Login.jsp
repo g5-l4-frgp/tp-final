@@ -18,33 +18,36 @@
  	    }
  	.container{
  	margin-top: 130px;}
+ 	#Fondo{
+        background-color:#020648;
+     }
  	</Style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 <title>Login</title>
 </head>
-<body>
+<body  id="Fondo">
 <div class="container">
 <form class="form-signin">
 
 
   <div class="form-label-group">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-    <label for="inputEmail">Email address</label>
+    <label for="inputEmail"class="text-light">Email address</label>
   </div>
 
   <div class="form-label-group">
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword"class="text-light">Password</label>
   </div>
 
   <div class="checkbox mb-3">
-    <label>
+    <label class="text-light">
       <input type="checkbox" value="remember-me"> Remember me
     </label>
   </div>
-  <button id="boton"   class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted text-center">© 2017-2020</p>
+  <button id="boton"   class="btn btn-lg btn-primary btn-block text-light" type="submit">Sign in</button>
+  <p class="mt-5 mb-3 text-muted text-center text-light">© 2017-2020</p>
 </form>
 </div>
 </body>

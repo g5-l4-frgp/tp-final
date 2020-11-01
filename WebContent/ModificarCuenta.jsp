@@ -21,41 +21,43 @@
  
     margin: auto;
  	 }
- 	 
- 	    #Fondo{
+   #Fondo{
         background-color:#020648;
      }
 </Style>
-<title>Transferencia a terceros</title>
+<title>Modificar de cuenta</title>
 </head>
 <body id="Fondo">
-<jsp:include page="MenuCliente.html"></jsp:include>
+<jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light ">Transferencia a terceros</h1>
+<h1 class="mt-3 text-center mb-1 text-info  text-light">Modificar cuenta</h1>
 <form class="Alta">
   <div class="form-row">
-           <div class="form-group col-md-6">
-      <label for="inputState"class="text-light">Cuenta de origen</label>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4" class="text-light">Usuario</label>
+      <input type="text" class="form-control" id="inputEmail">
+    </div>
+          <div class="form-group col-md-6">
+      <label for="inputState"class="text-light">Tipo de cuenta</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
         <option>Opcion 1</option>
         <option>Opcion 2</option>
       </select>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">CBU (Destino)</label>
-      <input type="text" class="form-control" id="inputEmail">
-    </div>
   </div>
     <div class="form-row">
-    <div class="form-group col-md-12">
-      <label id="lblMonto" for="lblMonto"class="text-light">Monto</label>
-      <input type="text" class="form-control" id="inputMonto">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4"class="text-light">CBU</label>
+      <input type="email" class="form-control" id="inputEmail">
     </div>
-    
+    <div class="form-group col-md-6">
+      <label for="inputPassword4"class="text-light">Saldo límite</label>
+      <input type="text" class="form-control" id="inputPassword">
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-primary crear mt-2 text-light">Transferir</button>
+  <button type="submit" class="btn btn-success crear">Confirmar</button>
 </form>
 </div>
 </body>
