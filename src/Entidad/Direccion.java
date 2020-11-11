@@ -4,10 +4,11 @@ public class Direccion {
 	
 	int ID;
 	String Calle;
-	int Altura;
+	String Altura;
 	String Localidad;
 	String Provincia;
 	int contador=0;
+	boolean estado=true;
 	public int getID() {
 		return ID;
 	}
@@ -20,11 +21,11 @@ public class Direccion {
 	public void setCalle(String calle) {
 		Calle = calle;
 	}
-	public int getAltura() {
+	public String getAltura() {
 		return Altura;
 	}
-	public void setAltura(int altura) {
-		Altura = altura;
+	public void setAltura(String string) {
+		Altura = string;
 	}
 	public String getLocalidad() {
 		return Localidad;
@@ -43,12 +44,12 @@ public class Direccion {
 		 contador++;
 		int ID=contador;
 		Calle="";
-	    Altura=0;
+	    Altura="";
 	    Localidad="";
 	    Provincia="";
 	}
 	
-	public Direccion(int alt,String Loca,String Prov,String Call) {
+	public Direccion(String alt,String Loca,String Prov,String Call) {
 		 contador++;
 		int ID=contador;
 		Calle=Call;
@@ -56,16 +57,18 @@ public class Direccion {
 		Localidad=Loca;
 		Provincia=Prov;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Altura;
+		result = prime * result + ((Altura == null) ? 0 : Altura.hashCode());
 		result = prime * result + ((Calle == null) ? 0 : Calle.hashCode());
 		result = prime * result + ID;
 		result = prime * result + ((Localidad == null) ? 0 : Localidad.hashCode());
 		result = prime * result + ((Provincia == null) ? 0 : Provincia.hashCode());
 		result = prime * result + contador;
+		result = prime * result + (estado ? 1231 : 1237);
 		return result;
 	}
 	@Override
@@ -77,7 +80,10 @@ public class Direccion {
 		if (getClass() != obj.getClass())
 			return false;
 		Direccion other = (Direccion) obj;
-		if (Altura != other.Altura)
+		if (Altura == null) {
+			if (other.Altura != null)
+				return false;
+		} else if (!Altura.equals(other.Altura))
 			return false;
 		if (Calle == null) {
 			if (other.Calle != null)
@@ -97,6 +103,8 @@ public class Direccion {
 		} else if (!Provincia.equals(other.Provincia))
 			return false;
 		if (contador != other.contador)
+			return false;
+		if (estado != other.estado)
 			return false;
 		return true;
 	}

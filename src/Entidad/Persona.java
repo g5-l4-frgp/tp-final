@@ -16,8 +16,10 @@ public class  Persona {
 	String Password;
 	TipoUsuario Idtipo;
 	Contacto contacto;
+
 	Direccion domicilio;
 	Date Fecha;
+	boolean estado=true;
 	
 	public Persona () {
 		 contador++;
@@ -34,6 +36,7 @@ public class  Persona {
 		 contacto=new Contacto();
 		 domicilio=new Direccion();
 		 Fecha=new Date();
+		 
 		
 	}
 
@@ -56,6 +59,13 @@ public class  Persona {
 		Fecha = fecha;
 	}
 
+	public int getContacto() {
+		return contacto.getID();
+	}
+	
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
 	public int getContador() {
 		return contador;
 	}
@@ -136,16 +146,16 @@ public class  Persona {
 		Password = password;
 	}
 
-	public TipoUsuario getIdtipo() {
-		return Idtipo;
+	public String getIdtipo() {
+		return Idtipo.getNombre();
 	}
 
 	public void setIdtipo(TipoUsuario idtipo) {
-		Idtipo = idtipo;
+		Idtipo=idtipo; 
 	}
 
-	public Direccion getDomicilio() {
-		return domicilio;
+	public int getDomicilio() {
+		return domicilio.getID();
 	}
 
 	public void setDomicilio(Direccion domicilio) {
@@ -256,9 +266,27 @@ public class  Persona {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+	public void setEstado(boolean b) {
+		// TODO Auto-generated method stub
+	 estado = b;
+	}
+
+	public boolean getEstado() {
+		// TODO Auto-generated method stub
+		return estado;
+	}
+
+	public void setContacto1(Contacto contacto2) {
+		// TODO Auto-generated method stub
+		this.contacto=contacto2;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		// TODO Auto-generated method stub
+		domicilio=direccion;
+	}
+
+
 	
 }

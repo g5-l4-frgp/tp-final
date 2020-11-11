@@ -13,6 +13,7 @@ public class Cuentas {
 		Date fechaCreacion;
 		String CBU;
 		Double Saldo;
+		boolean estado=true;
 		public Cuentas() {
 			 contador++;
 			 ID=contador;

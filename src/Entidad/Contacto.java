@@ -4,45 +4,39 @@ public class Contacto {
 
 	int ID;
 	String Email;
-	int Telefono;
+	String Telefono;
 	int contador=0;
+	boolean estado=true;
 	
 	public Contacto() {
 		 contador++;
 		 ID=contador;
 		 Email="";
-	     Telefono=0;
+	     Telefono="";
 		
 	}
-	
-	public Contacto(int tel,String email) {
+	public Contacto(String tel,String email) {
 		 contador++;
 		 ID=contador;
 		 Email=email;
 	     Telefono=tel;
 	}
-
 	public int getID() {
 		return ID;
 	}
-
 	public void setID(int iD) {
 		ID = iD;
 	}
-
 	public String getEmail() {
 		return Email;
 	}
-
 	public void setEmail(String email) {
 		Email = email;
 	}
-
-	public int getTelefono() {
+	public String getTelefono() {
 		return Telefono;
 	}
-
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		Telefono = telefono;
 	}
 
@@ -60,8 +54,9 @@ public class Contacto {
 		int result = 1;
 		result = prime * result + ((Email == null) ? 0 : Email.hashCode());
 		result = prime * result + ID;
-		result = prime * result + Telefono;
+		result = prime * result + ((Telefono == null) ? 0 : Telefono.hashCode());
 		result = prime * result + contador;
+		result = prime * result + (estado ? 1231 : 1237);
 		return result;
 	}
 
@@ -81,9 +76,14 @@ public class Contacto {
 			return false;
 		if (ID != other.ID)
 			return false;
-		if (Telefono != other.Telefono)
+		if (Telefono == null) {
+			if (other.Telefono != null)
+				return false;
+		} else if (!Telefono.equals(other.Telefono))
 			return false;
 		if (contador != other.contador)
+			return false;
+		if (estado != other.estado)
 			return false;
 		return true;
 	}

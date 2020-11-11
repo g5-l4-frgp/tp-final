@@ -4,6 +4,7 @@ public class TipoCuenta {
 	int ID;
 	int contador=0;
 	String Nombre;
+	boolean estado=true;
 	public TipoCuenta() {
 		
 		contador++;

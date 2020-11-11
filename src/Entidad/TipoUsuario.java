@@ -4,7 +4,7 @@ public class TipoUsuario {
 	int ID;
 	String Nombre;
 	int contador=0;
-	
+	boolean estado=true;
 	public TipoUsuario() {
 		 contador++;
 		 ID=contador;
