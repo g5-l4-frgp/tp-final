@@ -1,3 +1,6 @@
+
+ <%@page import="Entidad.Persona"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,7 +52,11 @@
       <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
     </div>
     </div>
-
+<%
+ArrayList<Persona> listaU = new ArrayList<Persona>();
+Persona usuario = new Persona();
+listaU = (ArrayList<Persona>)request.getAttribute("listaU");
+%>
 <div class="container">
 <table class="table ">
   <thead class="thead-light">
@@ -67,17 +74,24 @@
     </tr>
   </thead>
   <tbody>
+   <% if(listaU!=null){
+  		 for(Persona e : listaU)
+		{
+%>
     <tr class="text-light">
-      <td>Francisco</td>
-      <td>Alberto</td>
-       <td>39615232</td>
-       <td>tuemail@gmail.com</td>
-      <td>Francisco1996</td>
-      <td>01147565518</td>
+      <form action="Controlador" method="get">
+      
+      <td><%=e.getNickUsuario()%><input type="hidden" name="nombreUsuario" value="<%=e.getNickUsuario()%>"></td>
+      <td><%=e.getNombre() %></td>
+      <td><%=e.getApellido()%></td>
+      <td><%=e.getDNI()%></td>
       <td><button type="submit" class="btn btn-danger ">Eliminar</button></td> 
       <td><button type="submit" class="btn btn-primary ">Modificar</button></td> 
       <td><button type="submit" class="btn btn-success">Detalles</button></td> 
+    </form>
     </tr>
+      <%  } 
+  		 }%>	
   </tbody>
 </table>
 </div>

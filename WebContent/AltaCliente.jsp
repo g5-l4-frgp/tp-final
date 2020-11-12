@@ -31,74 +31,94 @@
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light ">Alta de cliente</h1>
-<form class="Alta">
+<h1 class="mt-3 text-center mb-1 text-info">Alta de cliente</h1>
+<form action="Controlador" method="get" class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">Usuario</label>
-      <input type="text" class="form-control" id="inputEmail">
+      <label for="inputEmail4">Usuario</label>
+      <input type="text" class="form-control" name="txtUsuario">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4"class="text-light">Password</label>
-      <input type="password" class="form-control" id="inputPassword">
-    </div>
-  </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">Email</label>
-      <input type="Email" class="form-control" id="inputEmail">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4"class="text-light">Teléfono</label>
-      <input type="text" class="form-control" id="inputPassword">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" name="txtPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">Cuil</label>
-      <input type="text" class="form-control" id="inputEmail">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" name="txtEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4"class="text-light">Dni</label>
-      <input type="text" class="form-control" id="inputPassword">
+      <label for="inputPassword4">Telï¿½fono</label>
+      <input type="text" class="form-control" name="txtTelefono">
+    </div>
+  </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Cuil</label>
+      <input type="text" class="form-control" name="txtCuil">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Dni</label>
+      <input type="text" class="form-control" name="txtDni">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4"class="text-light">Nombre</label>
-      <input type="text" class="form-control" id="inputnombre">
+      <label for="inputEmail4">Nombre</label>
+      <input type="text" class="form-control" name="txtNombre">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4"class="text-light">Apellido</label>
-      <input type="text" class="form-control" id="inputApellido">
+      <label for="inputPassword4">Apellido</label>
+      <input type="text" class="form-control" name="txtApellido">
         </div>
           <div class="form-group col-md-4">
-      <label for="inputState"class="text-light">Sexo</label>
-      <select id="inputState" class="form-control">
+      <label for="inputState">Sexo</label>
+      <select class="form-control" name="ddlSexo">
         <option selected>Seleccionar...</option>
-        <option>Femenino</option>
-        <option>Masculino</option>
+        <option value=1>Femenino</option>
+        <option value=2>Masculino</option>
       </select>
     </div>
       </div>
-  <div class="form-group">
-    <label for="inputAddress"class="text-light">Dirección</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Juramento 37">
+      
+        <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Fecha de nacimiento</label>
+      <input type="date" class="form-control" name="txtFechaNacimiento">
+    </div>
+ <div class="form-group col-md-6">
+      <label for="inputCity">Nacionalidad</label>
+      <input type="text" class="form-control" name="txtNacionalidad">
+    </div>
+
+  </div>
+      
+  <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputAddress">Calle</label>
+    <input type="text" class="form-control" id="inputAddress"  name="txtCalle">
+  </div>
+    <div class="form-group col-md-6">
+    <label for="inputAddress">Altura</label>
+    <input type="text" class="form-control" id="inputAddress" name="txtAltura">
+  </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity"class="text-light">Ciudad</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="inputCity">Provincia</label>
+      <input type="text" class="form-control" name="txtProvincia">
     </div>
  <div class="form-group col-md-6">
-      <label for="inputCity"class="text-light">Localidad</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="inputCity">Localidad</label>
+      <input type="text" class="form-control" name="txtLocalidad">
     </div>
 
   </div>
-
-  <button type="submit" class="btn btn-primary crear">Crear cliente</button>
+  
+	<input type="submit" class="btn btn-primary crear" value="Crear cliente" name="btnAceptar">
+  
 </form>
 </div>
 </body>
