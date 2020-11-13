@@ -13,7 +13,7 @@ public class  Persona {
 	String apellido;
 	String NickUsuario;
 	String Password;
-	TipoUsuario Idtipo;
+	int Idtipo;
 	Contacto contacto;
 	Direccion domicilio;
 	Date Fecha;
@@ -30,7 +30,7 @@ public class  Persona {
 		 apellido="";
 		 NickUsuario="";
 	     Password="";
-	     Idtipo=new TipoUsuario();
+	     Idtipo=0;
 		 contacto=new Contacto();
 		 domicilio=new Direccion();
 		 Fecha=new Date();
@@ -38,7 +38,7 @@ public class  Persona {
 	}
 
 	public Persona(int contador, String dNI, String cuil, String sexo, String nacionalidad, String nombre,
-			String apellido, String nickUsuario, String password, TipoUsuario idtipo, Contacto contacto,
+			String apellido, String nickUsuario, String password, int idtipo, Contacto contacto,
 			Direccion domicilio, Date fecha) {
 		super();
 		ID = contador;
@@ -62,13 +62,6 @@ public class  Persona {
 	
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
-	}
-	public int getContador() {
-		return contador;
-	}
-
-	public void setContador(int contador) {
-		this.contador = contador;
 	}
 
 	public int getID() {
@@ -143,11 +136,11 @@ public class  Persona {
 		Password = password;
 	}
 
-	public String getIdtipo() {
-		return Idtipo.getNombre();
+	public int getIdtipo() {
+		return Idtipo;
 	}
 
-	public void setIdtipo(TipoUsuario idtipo) {
+	public void setIdtipo(int idtipo) {
 		Idtipo=idtipo; 
 	}
 
@@ -175,7 +168,7 @@ public class  Persona {
 		result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
 		result = prime * result + ((Fecha == null) ? 0 : Fecha.hashCode());
 		result = prime * result + ID;
-		result = prime * result + ((Idtipo == null) ? 0 : Idtipo.hashCode());
+		result = prime * result + Idtipo;
 		result = prime * result + ((Nacionalidad == null) ? 0 : Nacionalidad.hashCode());
 		result = prime * result + ((NickUsuario == null) ? 0 : NickUsuario.hashCode());
 		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
@@ -185,6 +178,7 @@ public class  Persona {
 		result = prime * result + ((contacto == null) ? 0 : contacto.hashCode());
 		result = prime * result + contador;
 		result = prime * result + ((domicilio == null) ? 0 : domicilio.hashCode());
+		result = prime * result + (estado ? 1231 : 1237);
 		return result;
 	}
 
@@ -214,10 +208,7 @@ public class  Persona {
 			return false;
 		if (ID != other.ID)
 			return false;
-		if (Idtipo == null) {
-			if (other.Idtipo != null)
-				return false;
-		} else if (!Idtipo.equals(other.Idtipo))
+		if (Idtipo != other.Idtipo)
 			return false;
 		if (Nacionalidad == null) {
 			if (other.Nacionalidad != null)
@@ -260,6 +251,8 @@ public class  Persona {
 			if (other.domicilio != null)
 				return false;
 		} else if (!domicilio.equals(other.domicilio))
+			return false;
+		if (estado != other.estado)
 			return false;
 		return true;
 	}
