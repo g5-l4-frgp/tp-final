@@ -1,35 +1,39 @@
 package Entidad;
 
 import java.util.Date;
-
-import sun.print.PageableDoc;
+import java.util.Random;
 
 public class Cuentas {
    
 		int ID;
+		String numeroCuenta;
 		int contador=0;
 		TipoCuenta Idtipo;
 		Persona idPersona;
 		Date fechaCreacion;
 		String CBU;
 		Double Saldo;
+		String codBanco = "435";
+		String codSucursal = "602";
 		boolean estado=true;
 		public Cuentas() {
 			 contador++;
 			 ID=contador;
+			 numeroCuenta = null;
 			 idPersona=new Persona();
 			 fechaCreacion=new Date();
-			 CBU="";
+			 CBU=null;
 			 Saldo=0.0;
 		}
 		public Cuentas(int iD, TipoCuenta idtipo, Persona idPersona, Date fechaCreacion, String cBU, Double saldo) {
 			super();
 			contador++;
 			ID = contador;
+			numeroCuenta = CrearNumeroCuenta(idPersona.getCuil());
 			Idtipo = idtipo;
 			this.idPersona = idPersona;
 			this.fechaCreacion = fechaCreacion;
-			CBU = cBU;
+			CBU = CrearCBU(numeroCuenta);
 			Saldo = saldo;
 		}
 		public int getID() {
@@ -120,6 +124,19 @@ public class Cuentas {
 			} else if (!idPersona.equals(other.idPersona))
 				return false;
 			return true;
+		}
+		private String CrearNumeroCuenta(String cuil) {
+			String numeroCuentaString;
+			numeroCuentaString = "6" + cuil + "2";
+			return numeroCuentaString;
+		}
+		private String CrearCBU(String numeroCuenta) {
+			String CBU;
+			Random r = new Random();
+			int codSeg1 = r.nextInt(10);
+			int codSeg2 = r.nextInt(10);
+			CBU = codBanco + codSucursal + String.valueOf(codSeg1) + numeroCuenta + String.valueOf(codSeg2);
+			return CBU;
 		}
 		
 		

@@ -8,16 +8,13 @@ public class TipoUsuario {
 	public TipoUsuario() {
 		 contador++;
 		 ID=contador;
-		 Nombre="";
-	    
-		
+		 Nombre="";	
 	}
 	
 	public TipoUsuario(String nombre) {
 		 contador++;
 		 ID=contador;
-		 Nombre=nombre;
-	     
+		 Nombre=nombre;	     
 	}
 
 	@Override

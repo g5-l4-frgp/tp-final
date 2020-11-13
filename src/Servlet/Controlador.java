@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.ws.commons.xmlutil.Converter;
 import DAO.DAO_Personas;
 import Entidad.TipoUsuario;
 import Negocio.Persona_Negocio;
-import sun.java2d.d3d.D3DSurfaceDataProxy;
 import Entidad.Contacto;
 import Entidad.Cuentas;
 import Entidad.TipoCuenta;

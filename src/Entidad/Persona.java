@@ -1,6 +1,5 @@
 package Entidad;
 
-import sun.reflect.ConstructorAccessor;
 import java.util.Date;
 
 public class  Persona {
@@ -16,7 +15,6 @@ public class  Persona {
 	String Password;
 	TipoUsuario Idtipo;
 	Contacto contacto;
-
 	Direccion domicilio;
 	Date Fecha;
 	boolean estado=true;
@@ -36,11 +34,10 @@ public class  Persona {
 		 contacto=new Contacto();
 		 domicilio=new Direccion();
 		 Fecha=new Date();
-		 
 		
 	}
 
-	public Persona(int contador, int iD, String dNI, String cuil, String sexo, String nacionalidad, String nombre,
+	public Persona(int contador, String dNI, String cuil, String sexo, String nacionalidad, String nombre,
 			String apellido, String nickUsuario, String password, TipoUsuario idtipo, Contacto contacto,
 			Direccion domicilio, Date fecha) {
 		super();

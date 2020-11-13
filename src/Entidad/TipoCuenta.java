@@ -6,13 +6,11 @@ public class TipoCuenta {
 	String Nombre;
 	boolean estado=true;
 	public TipoCuenta() {
-		
 		contador++;
 		ID=contador;
 		Nombre="";
 	}
 	public TipoCuenta(int iD, String nombre) {
-		
 		contador++;
 		ID = contador;
 		Nombre = nombre;
