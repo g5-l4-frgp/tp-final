@@ -30,20 +30,22 @@ public class DAO_Personas {
 	Connection cn = null;
 	  try
 	  {
+		  
+//		  dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado
 		 cn = DriverManager.getConnection(host+dbName, user,pass);
 		 CallableStatement cst = cn.prepareCall("CALL SP_AgregarUsuario(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		 cst.setString(1, usuario.getNickUsuario());
-		 cst.setString(2, usuario.getDNI());
+		 cst.setString(1, usuario.getDNI());
+		 cst.setString(2, usuario.getCuil());
 		 cst.setString(3, usuario.getNombre());
 		 cst.setString(4, usuario.getApellido());
-		 cst.setString(5,usuario.getIdtipo());
-		 cst.setString(6, usuario.getPassword());
-		 cst.setString(7, usuario.getCuil());
-		 cst.setString(8, usuario.getSexo());
-		 cst.setString(9, usuario.getNacionalidad());
-		 cst.setInt(10, usuario.getDomicilio());
-		 cst.setInt(11,usuario.getContacto());
-		 cst.setDate(12, java.sql.Date.valueOf(fecha));
+		 cst.setString(5, usuario.getSexo());
+		 cst.setString(6, usuario.getNacionalidad());
+		 cst.setDate(7, java.sql.Date.valueOf(fecha));
+		 cst.setInt(8,usuario.getIdtipo());
+		 cst.setInt(9, usuario.getDomicilio());
+		 cst.setInt(10,usuario.getContacto());
+		 cst.setString(11, usuario.getNickUsuario());
+		 cst.setString(12, usuario.getPassword());
 		 cst.setBoolean(13, usuario.getEstado());
 		 cst.execute();   
 	  }
@@ -66,8 +68,8 @@ public class DAO_Personas {
 		  {
 			 cn = DriverManager.getConnection(host+dbName, user,pass);
 			 CallableStatement cst = cn.prepareCall("CALL SP_AgregarDireccion(?,?,?,?)");
-			 cst.setString(2, direccion.getCalle());
-			 cst.setString(1, direccion.getAltura());
+			 cst.setString(1, direccion.getCalle());
+			 cst.setString(2, direccion.getAltura());
 			 cst.setString(3, direccion.getLocalidad());
 			 cst.setString(4, direccion.getProvincia());
 			 cst.execute();
@@ -76,7 +78,7 @@ public class DAO_Personas {
 			e.printStackTrace();
 		}		
 	}
-	public void SP_AgregarContacto(Contacto contacto)
+	public void AgregarContacto(Contacto contacto)
 	{
 		
 		try {
@@ -85,6 +87,7 @@ public class DAO_Personas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		Connection cn = null;
 		  try
 		  {
@@ -115,31 +118,26 @@ public class DAO_Personas {
 			try {
 				
 				cn = DriverManager.getConnection(host+dbName, user,pass);
-				CallableStatement st = cn.prepareCall("CALL SP_ListarUsuario");
+				CallableStatement st = cn.prepareCall("CALL SP_ListarClientes");
 				
 				
 				ResultSet resultado = st.executeQuery();
 				/*  
-	 select u.nickUsuario, u.DNI, u.nombre, u.apellido, u.contraseña, u.CUIL,
-u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
-inner join direccion as d on d.idDireccion=u.idDireccion
-inner join contacto as c on c.idContacto = u.idContacto
-where u.DNI = DniUsuario;
+				dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado
 				 */
 				while(resultado.next()){
 					
 					Direccion direccion = new Direccion();
 					Contacto contacto = new Contacto();
 					Persona aux = new Persona();
-					aux.setNickUsuario(resultado.getString("nickUsuario"));
 					aux.setDNI(resultado.getString("DNI"));
+					aux.setCuil(resultado.getString("CUIL"));
 					aux.setNombre(resultado.getString("nombre"));
 					aux.setApellido(resultado.getString("apellido"));
-					aux.setPassword(resultado.getString("contraseña"));
-					aux.setCuil(resultado.getString("CUIL"));
 					aux.setSexo(resultado.getString("sexo"));
 					aux.setNacionalidad(resultado.getString("nacionalidad"));
 					aux.setFecha(resultado.getDate("fechaNacimiento"));
+					aux.setNickUsuario(resultado.getString("nickUsuario"));
 					direccion.setCalle(resultado.getString("calle"));
 					direccion.setAltura(resultado.getString("altura"));
 					direccion.setLocalidad(resultado.getString("localidad"));
@@ -163,6 +161,68 @@ where u.DNI = DniUsuario;
 			
 		}
 
+	public Contacto buscarContacto() {
+		
+		Connection cn = null;
+		
+		Contacto aux = new Contacto();
+		try {
+			
+			cn = DriverManager.getConnection(host+dbName, user,pass);
+			CallableStatement st = cn.prepareCall("CALL SP_BuscarContacto");
+			
+			
+			ResultSet resultado = st.executeQuery();
+			/*  
+			
+			 */
+			while(resultado.next()){
+				aux.setID(resultado.getInt("idContacto"));	
+					
+			}
+			
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return aux;
+	}	
+	
+
+	public Direccion buscarDireccion() {
+		Connection cn = null;
+		
+		Direccion aux = new Direccion();
+		try {
+			
+			cn = DriverManager.getConnection(host+dbName, user,pass);
+			CallableStatement st = cn.prepareCall("CALL SP_BuscarDireccion");
+			
+			
+			ResultSet resultado = st.executeQuery();
+			/*  
+	
+
+			 */
+			while(resultado.next()){
+				
+				aux.setID(resultado.getInt("idDireccion"));
+		
+					
+			}
+			
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return aux;
+	}	
 
 
 }

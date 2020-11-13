@@ -1,5 +1,5 @@
 
- <%@page import="Entidad.Persona"%>
+<%@page import="Entidad.Persona"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -53,9 +53,9 @@
     </div>
     </div>
 <%
-ArrayList<Persona> listaU = new ArrayList<Persona>();
+ArrayList<Persona> lista = new ArrayList<Persona>();
 Persona usuario = new Persona();
-listaU = (ArrayList<Persona>)request.getAttribute("listaU");
+lista = (ArrayList<Persona>)request.getAttribute("lista");
 %>
 <div class="container">
 <table class="table ">
@@ -74,8 +74,8 @@ listaU = (ArrayList<Persona>)request.getAttribute("listaU");
     </tr>
   </thead>
   <tbody>
-   <% if(listaU!=null){
-  		 for(Persona e : listaU)
+   <% if(lista!=null){
+  		 for(Persona e : lista)
 		{
 %>
     <tr class="text-light">

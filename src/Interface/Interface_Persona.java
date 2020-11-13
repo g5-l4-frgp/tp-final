@@ -12,7 +12,9 @@ public interface Interface_Persona {
 	
 	public void SPAltaUsuario(Persona usuario, String fecha);
 	public void SP_AgregarDireccion(Direccion direccion);
-	public void SP_AgregarContacto(Contacto contacto);
+	public void AgregarContacto(Contacto contacto);
 	public ArrayList<Persona> lista_usuarios();
+	public Contacto buscarContacto();
+	public Direccion buscarDireccion();
 
 }

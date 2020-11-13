@@ -6,7 +6,6 @@ public class Contacto {
 	String Email;
 	String Telefono;
 	int contador=0;
-	boolean estado=true;
 	
 	public Contacto() {
 		 contador++;
@@ -56,7 +55,6 @@ public class Contacto {
 		result = prime * result + ID;
 		result = prime * result + ((Telefono == null) ? 0 : Telefono.hashCode());
 		result = prime * result + contador;
-		result = prime * result + (estado ? 1231 : 1237);
 		return result;
 	}
 
@@ -82,8 +80,6 @@ public class Contacto {
 		} else if (!Telefono.equals(other.Telefono))
 			return false;
 		if (contador != other.contador)
-			return false;
-		if (estado != other.estado)
 			return false;
 		return true;
 	}

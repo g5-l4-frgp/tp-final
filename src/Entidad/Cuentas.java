@@ -1,35 +1,39 @@
 package Entidad;
 
 import java.util.Date;
-
-import sun.print.PageableDoc;
+import java.util.Random;
 
 public class Cuentas {
    
 		int ID;
+		String numeroCuenta;
 		int contador=0;
-		TipoCuenta Idtipo;
+		int Idtipo;
 		Persona idPersona;
 		Date fechaCreacion;
 		String CBU;
 		Double Saldo;
+		String codBanco = "435";
+		String codSucursal = "602";
 		boolean estado=true;
 		public Cuentas() {
 			 contador++;
 			 ID=contador;
+			 numeroCuenta = null;
 			 idPersona=new Persona();
 			 fechaCreacion=new Date();
-			 CBU="";
+			 CBU=null;
 			 Saldo=0.0;
 		}
-		public Cuentas(int iD, TipoCuenta idtipo, Persona idPersona, Date fechaCreacion, String cBU, Double saldo) {
+		public Cuentas(int iD, int idtipo, Persona idPersona, Date fechaCreacion, String cBU, Double saldo) {
 			super();
 			contador++;
 			ID = contador;
+			numeroCuenta = CrearNumeroCuenta(idPersona.getCuil());
 			Idtipo = idtipo;
 			this.idPersona = idPersona;
 			this.fechaCreacion = fechaCreacion;
-			CBU = cBU;
+			CBU = CrearCBU(numeroCuenta);
 			Saldo = saldo;
 		}
 		public int getID() {
@@ -38,10 +42,10 @@ public class Cuentas {
 		public void setID(int iD) {
 			ID = iD;
 		}
-		public TipoCuenta getIdtipo() {
+		public int getIdtipo() {
 			return Idtipo;
 		}
-		public void setIdtipo(TipoCuenta idtipo) {
+		public void setIdtipo(int idtipo) {
 			Idtipo = idtipo;
 		}
 		public Persona getIdPersona() {
@@ -68,17 +72,22 @@ public class Cuentas {
 		public void setSaldo(Double saldo) {
 			Saldo = saldo;
 		}
+	
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((CBU == null) ? 0 : CBU.hashCode());
 			result = prime * result + ID;
-			result = prime * result + ((Idtipo == null) ? 0 : Idtipo.hashCode());
+			result = prime * result + Idtipo;
 			result = prime * result + ((Saldo == null) ? 0 : Saldo.hashCode());
+			result = prime * result + ((codBanco == null) ? 0 : codBanco.hashCode());
+			result = prime * result + ((codSucursal == null) ? 0 : codSucursal.hashCode());
 			result = prime * result + contador;
+			result = prime * result + (estado ? 1231 : 1237);
 			result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 			result = prime * result + ((idPersona == null) ? 0 : idPersona.hashCode());
+			result = prime * result + ((numeroCuenta == null) ? 0 : numeroCuenta.hashCode());
 			return result;
 		}
 		@Override
@@ -97,17 +106,26 @@ public class Cuentas {
 				return false;
 			if (ID != other.ID)
 				return false;
-			if (Idtipo == null) {
-				if (other.Idtipo != null)
-					return false;
-			} else if (!Idtipo.equals(other.Idtipo))
+			if (Idtipo != other.Idtipo)
 				return false;
 			if (Saldo == null) {
 				if (other.Saldo != null)
 					return false;
 			} else if (!Saldo.equals(other.Saldo))
 				return false;
+			if (codBanco == null) {
+				if (other.codBanco != null)
+					return false;
+			} else if (!codBanco.equals(other.codBanco))
+				return false;
+			if (codSucursal == null) {
+				if (other.codSucursal != null)
+					return false;
+			} else if (!codSucursal.equals(other.codSucursal))
+				return false;
 			if (contador != other.contador)
+				return false;
+			if (estado != other.estado)
 				return false;
 			if (fechaCreacion == null) {
 				if (other.fechaCreacion != null)
@@ -119,7 +137,25 @@ public class Cuentas {
 					return false;
 			} else if (!idPersona.equals(other.idPersona))
 				return false;
+			if (numeroCuenta == null) {
+				if (other.numeroCuenta != null)
+					return false;
+			} else if (!numeroCuenta.equals(other.numeroCuenta))
+				return false;
 			return true;
+		}
+		private String CrearNumeroCuenta(String cuil) {
+			String numeroCuentaString;
+			numeroCuentaString = "6" + cuil + "2";
+			return numeroCuentaString;
+		}
+		private String CrearCBU(String numeroCuenta) {
+			String CBU;
+			Random r = new Random();
+			int codSeg1 = r.nextInt(10);
+			int codSeg2 = r.nextInt(10);
+			CBU = codBanco + codSucursal + String.valueOf(codSeg1) + numeroCuenta + String.valueOf(codSeg2);
+			return CBU;
 		}
 		
 		
