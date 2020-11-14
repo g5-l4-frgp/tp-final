@@ -1,6 +1,5 @@
 package Entidad;
 
-import sun.reflect.ConstructorAccessor;
 import java.util.Date;
 
 public class  Persona {
