@@ -4,7 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import Entidad.Contacto;
 import Entidad.Direccion;
@@ -31,7 +30,6 @@ public class DAO_Personas {
 	  try
 	  {
 		  
-//		  dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado
 		 cn = DriverManager.getConnection(host+dbName, user,pass);
 		 CallableStatement cst = cn.prepareCall("CALL SP_AgregarUsuario(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		 cst.setString(1, usuario.getDNI());
@@ -42,8 +40,8 @@ public class DAO_Personas {
 		 cst.setString(6, usuario.getNacionalidad());
 		 cst.setDate(7, java.sql.Date.valueOf(fecha));
 		 cst.setInt(8,usuario.getIdtipo());
-		 cst.setInt(9, usuario.getDomicilio());
-		 cst.setInt(10,usuario.getContacto());
+		 cst.setInt(9, usuario.getDomicilio().getID());
+		 cst.setInt(10,usuario.getContacto().getID());
 		 cst.setString(11, usuario.getNickUsuario());
 		 cst.setString(12, usuario.getPassword());
 		 cst.setBoolean(13, usuario.getEstado());
@@ -51,9 +49,9 @@ public class DAO_Personas {
 	  }
 	  catch (Exception e) {
 		e.printStackTrace();
-	}
+	  }
 		
-}
+	}
 	
 	public void SP_AgregarDireccion(Direccion direccion)
 	{
@@ -122,14 +120,12 @@ public class DAO_Personas {
 				
 				
 				ResultSet resultado = st.executeQuery();
-				/*  
-				dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado
-				 */
 				while(resultado.next()){
 					
 					Direccion direccion = new Direccion();
 					Contacto contacto = new Contacto();
 					Persona aux = new Persona();
+					aux.setID(resultado.getInt("idUsuario"));
 					aux.setDNI(resultado.getString("DNI"));
 					aux.setCuil(resultado.getString("CUIL"));
 					aux.setNombre(resultado.getString("nombre"));
@@ -173,9 +169,7 @@ public class DAO_Personas {
 			
 			
 			ResultSet resultado = st.executeQuery();
-			/*  
-			
-			 */
+
 			while(resultado.next()){
 				aux.setID(resultado.getInt("idContacto"));	
 					
@@ -203,10 +197,6 @@ public class DAO_Personas {
 			
 			
 			ResultSet resultado = st.executeQuery();
-			/*  
-	
-
-			 */
 			while(resultado.next()){
 				
 				aux.setID(resultado.getInt("idDireccion"));
@@ -222,7 +212,114 @@ public class DAO_Personas {
 		}
 		
 		return aux;
-	}	
+	}
+	
+	public void EliminarUsuario(int idUsuario) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Connection cn = null;
+		  try
+		  {
+			 cn = DriverManager.getConnection(host+dbName, user,pass);
+			 CallableStatement cst = cn.prepareCall("CALL SP_EliminarUsuario(?)");
+			 cst.setInt(1, idUsuario);
+			 cst.execute();
+		  }
+		  catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void ModificarUsuario(Persona usuario, String fecha)
+	{
+		
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	Connection cn = null;
+	  try
+	  {
+		  
+		 cn = DriverManager.getConnection(host+dbName, user,pass);
+		 CallableStatement cst = cn.prepareCall("CALL SP_ModificarUsuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		 cst.setInt(1, usuario.getID());
+		 cst.setString(2, usuario.getDNI());
+		 cst.setString(3, usuario.getCuil());
+		 cst.setString(4, usuario.getNombre());
+		 cst.setString(5, usuario.getApellido());
+		 cst.setString(6, usuario.getSexo());
+		 cst.setString(7, usuario.getNacionalidad());
+		 cst.setDate(8, java.sql.Date.valueOf(fecha));
+		 cst.setInt(9, usuario.getIdtipo());
+		 cst.setInt(10, usuario.getDomicilio().getID());
+		 cst.setInt(11,usuario.getContacto().getID());
+		 cst.setString(12, usuario.getNickUsuario());
+		 cst.setString(13, usuario.getPassword());
+		 cst.setBoolean(14, usuario.getEstado());
+		 cst.execute();   
+	  }
+	  catch (Exception e) {
+		e.printStackTrace();
+	  }
+		
+	}
+	public Persona BuscarUsuarioXID(int id) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
+			Connection cn = null;
+			Persona usuario = new Persona();
+			
+			try {
+				
+				cn = DriverManager.getConnection(host+dbName, user,pass);
+				CallableStatement st = cn.prepareCall("CALL SP_BuscarUsuarioxId(?)");
+				st.setInt(1, id);
+				
+				ResultSet resultado = st.executeQuery();
+				Direccion direccion = new Direccion();
+				Contacto contacto = new Contacto();
+				while(resultado.next()) {
+					usuario.setID(resultado.getInt("idUsuario"));
+					usuario.setDNI(resultado.getString("DNI"));
+					usuario.setCuil(resultado.getString("CUIL"));
+					usuario.setNombre(resultado.getString("nombre"));
+					usuario.setApellido(resultado.getString("apellido"));
+					usuario.setSexo(resultado.getString("sexo"));
+					usuario.setNacionalidad(resultado.getString("nacionalidad"));
+					usuario.setFecha(resultado.getDate("fechaNacimiento"));
+					usuario.setNickUsuario(resultado.getString("nickUsuario"));
+					direccion.setCalle(resultado.getString("calle"));
+					direccion.setAltura(resultado.getString("altura"));
+					direccion.setLocalidad(resultado.getString("localidad"));
+					direccion.setProvincia(resultado.getString("provincia"));
+					contacto.setEmail(resultado.getString("email"));
+					contacto.setTelefono(resultado.getString("telefono"));	
+					usuario.setDireccion(direccion); 
+					usuario.setContacto(contacto); 
+				}
+				
+			}
+			catch(Exception e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			return usuario;
+	}
 
 
 }
