@@ -119,17 +119,50 @@ DELIMITER $$
 	BEGIN
 
 		INSERT INTO usuario (DNI,CUIL,nombre,apellido,sexo,nacionalidad,fechaNacimiento,TipoUsuario,idDireccion,idContacto,nickUsuario,contraseña,estado)
-		SELECT               dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado;
+		values (dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado);
+		
+	END$$
+    DELIMITER $$
+	CREATE PROCEDURE SP_ModificarUsuario(
+		IN IdUsuario INT,
+        IN Dni VARCHAR(8),
+		IN Cuil VARCHAR(11),
+		IN Nombre VARCHAR(50),
+		IN Apellido VARCHAR(50),
+		IN Sexo VARCHAR(24),
+		IN Nacionalidad VARCHAR(50),
+		IN Fecha DATE,
+		IN tipo INT,
+        IN iDdireccion INT,
+		IN iDcontacto INT,
+		IN usuario VARCHAR(25),
+        IN Contraseña VARCHAR(25),
+        IN Estado bit
+        )
+        
+	BEGIN
+
+		UPDATE usuario set DNI = Dni, CUIL = Cuil, nombre = Nombre, apellido = Apellido, sexo = Sexo, nacionalidad = Nacionalidad,
+        fechaNacimiento = Fecha, TipoUsuario = tipo, idDireccion = iDdireccion, idContacto = iDcontacto, nickUsuario = usuario,
+        contraseña = Contraseña, estado = Estado
+		where idUsuario = IdUsuario;
 		
 	END$$
 DELIMITER $$
+    CREATE PROCEDURE SP_EliminarUsuario(
+        IN IdUsuario int
+		)
+    
+	BEGIN
+	UPDATE usuario set estado = 0 where idUsuario = IdUsuario;
+END$$
 CREATE PROCEDURE SP_ListarClientes(
         
 		)
 
 	BEGIN
 	
-	select  u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
+	select u.idUsuario, u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
 	u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
 	inner join direccion as d on d.idDireccion=u.idDireccion
 	inner join contacto as c on c.idContacto = u.idContacto
@@ -148,16 +181,28 @@ DELIMITER $$
 	inner join contacto as c on c.idContacto = u.idContacto
 	where u.DNI = dni;
 END$$
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarUsuarioxId(
+        IN IdUsuario VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	select  u.idUsuario, u.nombre, u.apellido, u.nickUsuario, u.DNI, u.CUIL,
+	u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
+	inner join direccion as d on d.idDireccion=u.idDireccion
+	inner join contacto as c on c.idContacto = u.idContacto
+	where u.idUsuario = IdUsuario;
+END$$
 	DELIMITER $$
     CREATE PROCEDURE SP_AgregarContacto (
     
 		IN Email VARCHAR(50),
-		IN Telefono VARCHAR(25),
-        IN Estado BIT
+		IN Telefono VARCHAR(25)
 )
  BEGIN
-	INSERT INTO  direccion(email ,telefono)
-    SELECT Email ,Telefono;
+	INSERT INTO  contacto(email ,telefono)
+    values( Email ,Telefono);
 END$$
 
 DELIMITER $$
@@ -167,10 +212,11 @@ CREATE PROCEDURE SP_AgregarDireccion  (
 		IN Altura VARCHAR(25),
 		IN Localidad VARCHAR(50), 
 		IN Provincia VARCHAR(50)
+        
 )
  BEGIN
 	INSERT INTO  direccion(calle ,altura ,localidad ,provincia)
-    SELECT Calle, Altura , Localidad ,Provincia;
+    values (Calle, Altura , Localidad ,Provincia);
 END$$
 
 DELIMITER $$
@@ -178,7 +224,7 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idDireccion  from direccion order by idDireccion desc;
+	select idDireccion  from direccion  order by idDireccion desc limit 1;
 END$$
 
 DELIMITER $$
@@ -186,5 +232,22 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idContacto  from contacto order by idContacto desc;
+	select idContacto  from contacto order by idContacto desc limit 1;
 END$$
+
+DELIMITER $$
+	CREATE PROCEDURE SP_AltaCuenta(
+
+		IN Tipo VARCHAR(30),
+		IN IdUsuario INT,
+		IN cbu VARCHAR(50),
+		IN Saldo FLOAT,
+		IN FechaCreacion DATE,		
+		IN Estado BIT
+        
+        )
+	BEGIN
+
+		INSERT INTO cuenta (tipo, idUsuario, CBU, saldo, fechaCreacion, estado)
+		SELECT Tipo, IdUsuario, cBU, Saldo, FechaCreacion, Estado;
+	END$$
