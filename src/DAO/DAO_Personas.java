@@ -118,13 +118,6 @@ public class DAO_Personas {
 				
 				
 				ResultSet resultado = st.executeQuery();
-				/*  
-	 select u.nickUsuario, u.DNI, u.nombre, u.apellido, u.contraseña, u.CUIL,
-u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
-inner join direccion as d on d.idDireccion=u.idDireccion
-inner join contacto as c on c.idContacto = u.idContacto
-where u.DNI = DniUsuario;
-				 */
 				while(resultado.next()){
 					
 					Direccion direccion = new Direccion();
@@ -134,7 +127,6 @@ where u.DNI = DniUsuario;
 					aux.setDNI(resultado.getString("DNI"));
 					aux.setNombre(resultado.getString("nombre"));
 					aux.setApellido(resultado.getString("apellido"));
-					aux.setPassword(resultado.getString("contraseña"));
 					aux.setCuil(resultado.getString("CUIL"));
 					aux.setSexo(resultado.getString("sexo"));
 					aux.setNacionalidad(resultado.getString("nacionalidad"));

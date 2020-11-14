@@ -156,7 +156,8 @@ DELIMITER $$
 	BEGIN
 	UPDATE usuario set estado = 0 where idUsuario = IdUsuario;
 END$$
-CREATE PROCEDURE SP_ListarClientes(
+DELIMITER $$
+CREATE PROCEDURE SP_ListarUsuario(
         
 		)
 
