@@ -30,7 +30,7 @@
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info  text-light">Modificar cuenta</h1>
+<h1 class="mt-3 text-center mb-1 text-info  text-info">Modificar cuenta</h1>
 <form class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">

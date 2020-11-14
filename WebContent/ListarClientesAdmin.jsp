@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Listado de clientes</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -32,8 +32,8 @@
  	}
  	.Mover
  	{
- 	
-		margin-right: 20px;
+ 		margin-left: 10px;
+ 		margin-right: 20px;
 		margin-top: 5px;
  	}
  	 #Fondo{
@@ -45,7 +45,7 @@
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 
-<div class="container Mover  ">
+<div class="container Mover">
 <div class="row mt-5  ">
 
       <input type="text" class="form-control" id="Filtrar">
@@ -81,12 +81,12 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
     <tr class="text-light">
       <form action="Controlador" method="get">
       
-      <td><%=e.getNickUsuario()%><input type="hidden" name="nombreUsuario" value="<%=e.getNickUsuario()%>"></td>
+      <td><%=e.getNickUsuario()%><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
       <td><%=e.getNombre() %></td>
       <td><%=e.getApellido()%></td>
       <td><%=e.getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger ">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary ">Modificar</button></td> 
+      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
+      <td><button type="submit" class="btn btn-primary" name="btnModificar">Modificar</button></td> 
       <td><button type="submit" class="btn btn-success">Detalles</button></td> 
     </form>
     </tr>
