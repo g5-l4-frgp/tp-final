@@ -4,7 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import Entidad.Contacto;
 import Entidad.Direccion;
@@ -32,18 +31,18 @@ public class DAO_Personas {
 	  {
 		 cn = DriverManager.getConnection(host+dbName, user,pass);
 		 CallableStatement cst = cn.prepareCall("CALL SP_AgregarUsuario(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		 cst.setString(1, usuario.getNickUsuario());
-		 cst.setString(2, usuario.getDNI());
+		 cst.setString(1, usuario.getDNI());
+		 cst.setString(2, usuario.getCuil());
 		 cst.setString(3, usuario.getNombre());
 		 cst.setString(4, usuario.getApellido());
-		 cst.setString(5,usuario.getIdtipo());
-		 cst.setString(6, usuario.getPassword());
-		 cst.setString(7, usuario.getCuil());
-		 cst.setString(8, usuario.getSexo());
-		 cst.setString(9, usuario.getNacionalidad());
-		 cst.setInt(10, usuario.getDomicilio());
-		 cst.setInt(11,usuario.getContacto());
-		 cst.setDate(12, java.sql.Date.valueOf(fecha));
+		 cst.setString(5, usuario.getSexo());
+		 cst.setString(6, usuario.getNacionalidad());
+		 cst.setDate(7, java.sql.Date.valueOf(fecha));
+		 cst.setString(8,usuario.getIdtipo());
+		 cst.setInt(9, usuario.getDomicilio());
+		 cst.setInt(10,usuario.getContacto());
+		 cst.setString(11, usuario.getNickUsuario());
+		 cst.setString(12, usuario.getPassword());
 		 cst.setBoolean(13, usuario.getEstado());
 		 cst.execute();   
 	  }
