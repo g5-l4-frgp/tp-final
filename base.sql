@@ -41,10 +41,11 @@ create table usuario(
 create table cuentas
 (
 	idCuenta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	idTipo VARCHAR(20),
+	idTipo int,
 	idUsuario INT,
 	fechaCreacion DATETIME,
-	CBU INT,
+	CBU VARCHAR(22),
+    Numerocuenta VARCHAR(12),
 	saldo FLOAT,
 	estado bit,
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
@@ -57,7 +58,7 @@ create table movimientos
 	idCuenta INT,
      estado bit,
      FOREIGN KEY (idCuenta) REFERENCES cuentas(idCuenta)
-    );
+);
 
 create table prestamos
 (
@@ -94,10 +95,7 @@ create table transferencias
     idCuenta INT,
 	estado bit,
 	FOREIGN KEY (idCuenta) REFERENCES cuentas(idCuenta)
-
 );
-
-
 
 DELIMITER $$
 	CREATE PROCEDURE SP_AgregarUsuario(
@@ -119,7 +117,7 @@ DELIMITER $$
 	BEGIN
 
 		INSERT INTO usuario (DNI,CUIL,nombre,apellido,sexo,nacionalidad,fechaNacimiento,TipoUsuario,idDireccion,idContacto,nickUsuario,contraseña,estado)
-		SELECT               dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado;
+		values (dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado);
 		
 	END$$
 DELIMITER $$
@@ -148,16 +146,16 @@ DELIMITER $$
 	inner join contacto as c on c.idContacto = u.idContacto
 	where u.DNI = dni;
 END$$
+
 	DELIMITER $$
     CREATE PROCEDURE SP_AgregarContacto (
     
 		IN Email VARCHAR(50),
-		IN Telefono VARCHAR(25),
-        IN Estado BIT
+		IN Telefono VARCHAR(25)
 )
  BEGIN
-	INSERT INTO  direccion(email ,telefono)
-    SELECT Email ,Telefono;
+	INSERT INTO  contacto(email ,telefono)
+    values( Email ,Telefono);
 END$$
 
 DELIMITER $$
@@ -167,10 +165,11 @@ CREATE PROCEDURE SP_AgregarDireccion  (
 		IN Altura VARCHAR(25),
 		IN Localidad VARCHAR(50), 
 		IN Provincia VARCHAR(50)
+        
 )
  BEGIN
 	INSERT INTO  direccion(calle ,altura ,localidad ,provincia)
-    SELECT Calle, Altura , Localidad ,Provincia;
+    values (Calle, Altura , Localidad ,Provincia);
 END$$
 
 DELIMITER $$
@@ -178,7 +177,7 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idDireccion  from direccion order by idDireccion desc;
+	select idDireccion  from direccion  order by idDireccion desc limit 1;
 END$$
 
 DELIMITER $$
@@ -186,5 +185,38 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idContacto  from contacto order by idContacto desc;
+	select idContacto  from contacto order by idContacto desc limit 1;
 END$$
+
+DELIMITER $$
+	CREATE PROCEDURE SP_AltaCuenta(
+
+		IN Tipo INT,
+		IN IdUsuario INT,
+		IN cbu VARCHAR(22),
+        IN numeroCuenta VARCHAR(13),
+		IN Saldo FLOAT,
+		IN FechaCreacion DATE,		
+		IN Estado BIT
+
+        )
+        
+	BEGIN
+		INSERT INTO cuentas(idtipo, idUsuario, CBU,Numerocuenta, saldo, fechaCreacion, estado)
+		values (Tipo, IdUsuario, cbu,numeroCuenta, Saldo, FechaCreacion, Estado);
+	END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarCuentas()
+BEGIN
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion, u.nombre, u.apellido from cuentas as c
+		inner join usuario as u on u.idUsuario = c.idUsuario
+where c.Estado = 1;
+   END$$
+   DELIMITER $$
+       CREATE PROCEDURE SP_EliminarCuenta(
+       IN idcuenta int
+)
+BEGIN
+UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
+END$$
+CALL SP_ListarCuentas

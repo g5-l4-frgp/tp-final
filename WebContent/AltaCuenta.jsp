@@ -32,34 +32,34 @@
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
 <h1 class="mt-3 text-center mb-1 text-info  text-light">Alta de cuenta</h1>
-<form class="Alta">
+<form action="ServletCuenta" method="get" class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">Usuario</label>
-      <input type="text" class="form-control" id="inputEmail">
+      <label for="inputEmail4"class="text-light">DNI</label>
+      <input type="text" class="form-control" name="txtDNI">
     </div>
           <div class="form-group col-md-6">
       <label for="inputState"class="text-light">Tipo de cuenta</label>
-      <select id="inputState" class="form-control">
+      <select name="seleccionCuenta" class="form-control">
         <option selected>Seleccionar...</option>
-        <option>Cuenta Corriente</option>
-        <option>Caja de ahorro</option>
+        <option value =1>Cuenta Corriente</option>
+        <option value =2>Caja de ahorro</option>
       </select>
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4"class="text-light">CBU</label>
-      <input type="email" class="form-control" id="inputEmail">
+      <input type="email" class="form-control" name="txtCBU">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4"class="text-light">Saldo</label>
-      <input type="text" class="form-control" id="inputPassword">
+      <input type="text" class="form-control" name="txtSaldo">
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary crear">Crear cuenta</button>
-</form>
+  <button type="submit" class="btn btn-primary crear" name="btnAceptar">Crear cuenta</button>
+  </form>
 </div>
 </body>
 </html>
