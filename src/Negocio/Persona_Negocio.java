@@ -41,6 +41,27 @@ public class Persona_Negocio implements Interface_negocio_persona{
 		// TODO Auto-generated method stub
 		return daoPersona.buscarDireccion();
 	}
+
+	@Override
+	public void EliminarUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		daoPersona.EliminarUsuario(idUsuario);
+	}
+
+	@Override
+	public void ModificarUsuario(Persona usuario, String fecha) {
+		// TODO Auto-generated method stub
+		daoPersona.ModificarUsuario(usuario, fecha);
+	}
+
+	@Override
+	public Persona BuscarUsuarioXID(int idUsuario) {
+		// TODO Auto-generated method stub
+		return daoPersona.BuscarUsuarioXID(idUsuario);
+	}
+	
+
+	
 }
 		
 

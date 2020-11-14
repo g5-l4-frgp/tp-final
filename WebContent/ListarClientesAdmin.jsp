@@ -81,12 +81,12 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
     <tr class="text-light">
       <form action="Controlador" method="get">
       
-      <td><%=e.getNickUsuario()%><input type="hidden" name="nombreUsuario" value="<%=e.getNickUsuario()%>"></td>
+      <td><%=e.getNickUsuario()%><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
       <td><%=e.getNombre() %></td>
       <td><%=e.getApellido()%></td>
       <td><%=e.getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger ">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary ">Modificar</button></td> 
+      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
+      <td><button type="submit" class="btn btn-primary" name="btnModificar">Modificar</button></td> 
       <td><button type="submit" class="btn btn-success">Detalles</button></td> 
     </form>
     </tr>

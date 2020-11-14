@@ -56,8 +56,8 @@ public class  Persona {
 		Fecha = fecha;
 	}
 
-	public int getContacto() {
-		return contacto.getID();
+	public Contacto getContacto() {
+		return contacto;
 	}
 	
 	public void setContacto(Contacto contacto) {
@@ -144,8 +144,8 @@ public class  Persona {
 		Idtipo=idtipo; 
 	}
 
-	public int getDomicilio() {
-		return domicilio.getID();
+	public Direccion getDomicilio() {
+		return domicilio;
 	}
 
 	public void setDomicilio(Direccion domicilio) {
