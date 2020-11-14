@@ -33,7 +33,7 @@
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-<h1 class="mt-3 text-center mb-4 text-info text-light ">Cuentas</h1>
+<h1 class="mt-3 text-center mb-4 text-info text-info ">Cuentas</h1>
 <div class="container">
 <table class="table ">
   <thead class="thead-light">

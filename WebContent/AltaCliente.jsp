@@ -25,6 +25,10 @@
  	    #Fondo{
         background-color:#020648;
      }
+     
+     	#label{
+     	color:white;
+     	}
 </Style>
 <title>Alta de cliente</title>
 </head>
@@ -35,45 +39,45 @@
 <form action="Controlador" method="get" class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Usuario</label>
+      <label for="inputEmail4" class="text-light">Usuario</label>
       <input type="text" class="form-control" name="txtUsuario">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
+      <label for="inputPassword4" class="text-light">Password</label>
       <input type="password" class="form-control" name="txtPassword">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
+      <label for="inputEmail4" class="text-light">Email</label>
       <input type="email" class="form-control" name="txtEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Tel�fono</label>
+      <label for="inputPassword4" class="text-light">Telefono</label>
       <input type="text" class="form-control" name="txtTelefono">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Cuil</label>
+      <label for="inputEmail4" class="text-light">Cuil</label>
       <input type="text" class="form-control" name="txtCuil">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Dni</label>
+      <label for="inputPassword4" class="text-light">Dni</label>
       <input type="text" class="form-control" name="txtDni">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4">Nombre</label>
+      <label for="inputEmail4" class="text-light">Nombre</label>
       <input type="text" class="form-control" name="txtNombre">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4">Apellido</label>
+      <label for="inputPassword4" class="text-light">Apellido</label>
       <input type="text" class="form-control" name="txtApellido">
         </div>
           <div class="form-group col-md-4">
-      <label for="inputState">Sexo</label>
+      <label for="inputState" class="text-light">Sexo</label>
       <select class="form-control" name="ddlSexo">
         <option selected>Seleccionar...</option>
         <option value=1>Femenino</option>
@@ -84,11 +88,11 @@
       
         <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Fecha de nacimiento</label>
+      <label for="inputCity" class="text-light">Fecha de nacimiento</label>
       <input type="date" class="form-control" name="txtFechaNacimiento">
     </div>
  <div class="form-group col-md-6">
-      <label for="inputCity">Nacionalidad</label>
+      <label for="inputCity" class="text-light">Nacionalidad</label>
       <input type="text" class="form-control" name="txtNacionalidad">
     </div>
 
@@ -96,22 +100,22 @@
       
   <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="inputAddress">Calle</label>
+    <label for="inputAddress" class="text-light">Calle</label>
     <input type="text" class="form-control" id="inputAddress"  name="txtCalle">
   </div>
     <div class="form-group col-md-6">
-    <label for="inputAddress">Altura</label>
+    <label for="inputAddress" class="text-light">Altura</label>
     <input type="text" class="form-control" id="inputAddress" name="txtAltura">
   </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Provincia</label>
+      <label for="inputCity" class="text-light">Provincia</label>
       <input type="text" class="form-control" name="txtProvincia">
     </div>
  <div class="form-group col-md-6">
-      <label for="inputCity">Localidad</label>
+      <label for="inputCity" class="text-light">Localidad</label>
       <input type="text" class="form-control" name="txtLocalidad">
     </div>
 

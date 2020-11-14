@@ -120,6 +120,8 @@ DELIMITER $$
 
 		INSERT INTO usuario (DNI,CUIL,nombre,apellido,sexo,nacionalidad,fechaNacimiento,TipoUsuario,idDireccion,idContacto,nickUsuario,contraseña,estado)
 		values (dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado);
+<<<<<<< HEAD
+=======
 		
 	END$$
     DELIMITER $$
@@ -146,6 +148,7 @@ DELIMITER $$
         fechaNacimiento = Fecha, TipoUsuario = tipo, idDireccion = iDdireccion, idContacto = iDcontacto, nickUsuario = usuario,
         contraseña = Contraseña, estado = Estado
 		where idUsuario = IdUsuario;
+>>>>>>> ce69bf69309e002ebd244240008606fa3ba63f19
 		
 	END$$
 DELIMITER $$
@@ -246,8 +249,17 @@ DELIMITER $$
 		IN Estado BIT
         
         )
+<<<<<<< HEAD
+        
+=======
+>>>>>>> ce69bf69309e002ebd244240008606fa3ba63f19
 	BEGIN
 
 		INSERT INTO cuenta (tipo, idUsuario, CBU, saldo, fechaCreacion, estado)
 		SELECT Tipo, IdUsuario, cBU, Saldo, FechaCreacion, Estado;
+<<<<<<< HEAD
 	END$$
+    call sp_agregarDireccion('sadsads','sadsa','sadasd','sadsad')
+=======
+	END$$
+>>>>>>> ce69bf69309e002ebd244240008606fa3ba63f19

@@ -44,7 +44,7 @@
 <body ID="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-light" ID="tituloEspacio">Prestamo cliente</h1>
+<h1 class="mt-3 text-center mb-1 text-info" ID="tituloEspacio">A</h1>
 <form class="Alta">
   <div class="form-row">
            <div class="form-group col-md-6">
