@@ -119,7 +119,7 @@ DELIMITER $$
 	BEGIN
 
 		INSERT INTO usuario (DNI,CUIL,nombre,apellido,sexo,nacionalidad,fechaNacimiento,TipoUsuario,idDireccion,idContacto,nickUsuario,contraseña,estado)
-		SELECT               dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado;
+		values (dni,Cuil,Nombre,Apellido,Sexo,Nacionalidad,Fecha,tipo,iDdireccion,iDcontacto,usuario,Contraseña, Estado);
 		
 	END$$
 DELIMITER $$
@@ -152,12 +152,11 @@ END$$
     CREATE PROCEDURE SP_AgregarContacto (
     
 		IN Email VARCHAR(50),
-		IN Telefono VARCHAR(25),
-        IN Estado BIT
+		IN Telefono VARCHAR(25)
 )
  BEGIN
-	INSERT INTO  direccion(email ,telefono)
-    SELECT Email ,Telefono;
+	INSERT INTO  contacto(email ,telefono)
+    values( Email ,Telefono);
 END$$
 
 DELIMITER $$
@@ -167,10 +166,11 @@ CREATE PROCEDURE SP_AgregarDireccion  (
 		IN Altura VARCHAR(25),
 		IN Localidad VARCHAR(50), 
 		IN Provincia VARCHAR(50)
+        
 )
  BEGIN
 	INSERT INTO  direccion(calle ,altura ,localidad ,provincia)
-    SELECT Calle, Altura , Localidad ,Provincia;
+    values (Calle, Altura , Localidad ,Provincia);
 END$$
 
 DELIMITER $$
@@ -178,7 +178,7 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idDireccion  from direccion order by idDireccion desc;
+	select idDireccion  from direccion  order by idDireccion desc limit 1;
 END$$
 
 DELIMITER $$
@@ -186,5 +186,24 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  TOP1 idContacto  from contacto order by idContacto desc;
+	select idContacto  from contacto order by idContacto desc limit 1;
 END$$
+
+DELIMITER $$
+	CREATE PROCEDURE SP_AltaCuenta(
+
+		IN Tipo VARCHAR(30),
+		IN IdUsuario INT,
+		IN cbu VARCHAR(50),
+		IN Saldo FLOAT,
+		IN FechaCreacion DATE,		
+		IN Estado BIT
+        
+        )
+        
+	BEGIN
+
+		INSERT INTO cuenta (tipo, idUsuario, CBU, saldo, fechaCreacion, estado)
+		SELECT Tipo, IdUsuario, cBU, Saldo, FechaCreacion, Estado;
+	END$$
+    call sp_agregarDireccion('sadsads','sadsa','sadasd','sadsad')

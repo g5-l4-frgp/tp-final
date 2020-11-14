@@ -27,11 +27,11 @@
 <title>Login</title>
 </head>
 <body  id="Fondo">
+<jsp:include page="MenuLogin.html"></jsp:include>
 <div class="container">
+<h1 class="mt-3 text-center mb-4 text-info text-info ">Iniciar sesión</h1>
 <form class="form-signin">
-
-
-  <div class="form-label-group">
+  	<div class="form-label-group">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
     <label for="inputEmail"class="text-light">Email address</label>
   </div>

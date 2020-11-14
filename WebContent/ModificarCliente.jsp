@@ -34,7 +34,7 @@
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-light">Modificar cliente</h1>
+<h1 class="mt-3 text-center mb-1 text-info">Modificar cliente</h1>
 <form class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -84,9 +84,15 @@
       </select>
     </div>
       </div>
-  <div class="form-group">
-    <label for="inputAddress" class="text-light">Dirección</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="">
+   <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputAddress" class="text-light">Calle</label>
+    <input type="text" class="form-control" id="inputAddress"  name="txtCalle">
+  </div>
+    <div class="form-group col-md-6">
+    <label for="inputAddress" class="text-light">Altura</label>
+    <input type="text" class="form-control" id="inputAddress" name="txtAltura">
+  </div>
   </div>
 
   <div class="form-row">
