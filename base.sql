@@ -41,10 +41,11 @@ create table usuario(
 create table cuentas
 (
 	idCuenta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	idTipo VARCHAR(20),
+	idTipo int,
 	idUsuario INT,
 	fechaCreacion DATETIME,
-	CBU INT,
+	CBU VARCHAR(22),
+    Numerocuenta VARCHAR(12),
 	saldo FLOAT,
 	estado bit,
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
@@ -238,16 +239,32 @@ END$$
 DELIMITER $$
 	CREATE PROCEDURE SP_AltaCuenta(
 
-		IN Tipo VARCHAR(30),
+		IN Tipo INT,
 		IN IdUsuario INT,
-		IN cbu VARCHAR(50),
+		IN cbu VARCHAR(22),
+        IN numeroCuenta VARCHAR(13),
 		IN Saldo FLOAT,
 		IN FechaCreacion DATE,		
 		IN Estado BIT
-        
-        )
-	BEGIN
 
-		INSERT INTO cuenta (tipo, idUsuario, CBU, saldo, fechaCreacion, estado)
-		SELECT Tipo, IdUsuario, cBU, Saldo, FechaCreacion, Estado;
+        )
+        
+	BEGIN
+		INSERT INTO cuentas(idtipo, idUsuario, CBU,Numerocuenta, saldo, fechaCreacion, estado)
+		values (Tipo, IdUsuario, cbu,numeroCuenta, Saldo, FechaCreacion, Estado);
 	END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarCuentas()
+BEGIN
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion, u.nombre, u.apellido from cuentas as c
+		inner join usuario as u on u.idUsuario = c.idUsuario
+where c.Estado = 1;
+   END$$
+   DELIMITER $$
+       CREATE PROCEDURE SP_EliminarCuenta(
+       IN idcuenta int
+)
+BEGIN
+UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
+END$$
+CALL SP_ListarCuentas

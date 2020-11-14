@@ -6,26 +6,26 @@ import java.util.Random;
 public class Cuentas {
    
 		int ID;
-		String numeroCuenta;
+		String numeroCuenta="";
 		int contador=0;
 		int Idtipo;
 		Persona idPersona;
 		Date fechaCreacion;
-		String CBU;
-		Double Saldo;
+		String CBU="";
+		float Saldo;
 		String codBanco = "435";
 		String codSucursal = "602";
 		boolean estado=true;
 		public Cuentas() {
 			 contador++;
 			 ID=contador;
-			 numeroCuenta = null;
+			 numeroCuenta="";
 			 idPersona=new Persona();
 			 fechaCreacion=new Date();
-			 CBU=null;
-			 Saldo=0.0;
+			 CBU="";
+			 Saldo=0;
 		}
-		public Cuentas(int iD, int idtipo, Persona idPersona, Date fechaCreacion, String cBU, Double saldo) {
+		public Cuentas(int iD, int idtipo, Persona idPersona, Date fechaCreacion, String cBU,float saldo) {
 			super();
 			contador++;
 			ID = contador;
@@ -48,6 +48,30 @@ public class Cuentas {
 		public void setIdtipo(int idtipo) {
 			Idtipo = idtipo;
 		}
+		public String getNumeroCuenta() {
+			return numeroCuenta;
+		}
+		public void setNumeroCuenta(String numeroCuenta) {
+			this.numeroCuenta = numeroCuenta;
+		}
+		public String getCodBanco() {
+			return codBanco;
+		}
+		public void setCodBanco(String codBanco) {
+			this.codBanco = codBanco;
+		}
+		public String getCodSucursal() {
+			return codSucursal;
+		}
+		public void setCodSucursal(String codSucursal) {
+			this.codSucursal = codSucursal;
+		}
+		public boolean isEstado() {
+			return estado;
+		}
+		public void setEstado(boolean estado) {
+			this.estado = estado;
+		}
 		public Persona getIdPersona() {
 			return idPersona;
 		}
@@ -66,13 +90,14 @@ public class Cuentas {
 		public void setCBU(String cBU) {
 			CBU = cBU;
 		}
-		public Double getSaldo() {
+		public float getSaldo() {
 			return Saldo;
 		}
-		public void setSaldo(Double saldo) {
+		public void setSaldo(float saldo) {
 			Saldo = saldo;
 		}
 	
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -80,10 +105,9 @@ public class Cuentas {
 			result = prime * result + ((CBU == null) ? 0 : CBU.hashCode());
 			result = prime * result + ID;
 			result = prime * result + Idtipo;
-			result = prime * result + ((Saldo == null) ? 0 : Saldo.hashCode());
+			result = prime * result + Float.floatToIntBits(Saldo);
 			result = prime * result + ((codBanco == null) ? 0 : codBanco.hashCode());
 			result = prime * result + ((codSucursal == null) ? 0 : codSucursal.hashCode());
-			result = prime * result + contador;
 			result = prime * result + (estado ? 1231 : 1237);
 			result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 			result = prime * result + ((idPersona == null) ? 0 : idPersona.hashCode());
@@ -108,10 +132,7 @@ public class Cuentas {
 				return false;
 			if (Idtipo != other.Idtipo)
 				return false;
-			if (Saldo == null) {
-				if (other.Saldo != null)
-					return false;
-			} else if (!Saldo.equals(other.Saldo))
+			if (Float.floatToIntBits(Saldo) != Float.floatToIntBits(other.Saldo))
 				return false;
 			if (codBanco == null) {
 				if (other.codBanco != null)
@@ -122,8 +143,6 @@ public class Cuentas {
 				if (other.codSucursal != null)
 					return false;
 			} else if (!codSucursal.equals(other.codSucursal))
-				return false;
-			if (contador != other.contador)
 				return false;
 			if (estado != other.estado)
 				return false;
