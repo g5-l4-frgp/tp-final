@@ -1,4 +1,6 @@
 <%@page import="Entidad.Persona"%>
+<%@page import="Entidad.Cuentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,7 +50,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4" class="text-light">Contraseña</label>
-      <input type="password" class="form-control" value="*********" id="inputPassword" name="contraseña">
+      <input type="password" class="form-control" value="*********" id="inputPassword"  name="contraseña">
     </div>
   </div>
     <div class="form-row">
@@ -105,8 +107,43 @@
     </div>
 
   </div>
+  <div class="container">
+  <%
+ArrayList<Cuentas> lista = new ArrayList<Cuentas>();
+lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
+%>
+<table class="table ">
+  <thead class="thead-light">
+    <tr>
 
-  <button type="submit" class="btn btn-primary crear" name="btnAceptar_modificar">Aceptar</button>
+      <th scope="col">Nro de cuenta</th>
+      <th scope="col">Tipo de cuenta</th>
+      <th scope="col">DNI</th>
+      <th class="fila" scope="col"></th>
+      <th class="fila" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="text-light">
+    <% if(lista!=null){
+  		 for(Cuentas e : lista)
+		{
+%>
+    <tr class="text-light">
+      <form action="Controlador" method="get">
+      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
+      <td><%=e.getIdtipo()%></td>
+      <td><%=e.getIdPersona().getDNI()%></td>
+      <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
+    </form>
+    </tr>
+      <%  } 
+  		 }%>	
+  </tbody>
+</table>
+</div>
+
+  <button type="submit" class="btn btn-primary crear" name="btnAceptar_modificar">Modificar</button>
+   <button type="submit" class="btn btn-primary crear" name="btnCancelar_modificar">Cancelar</button>
 </form>
 </div>
 </body>

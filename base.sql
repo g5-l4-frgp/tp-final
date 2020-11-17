@@ -1,4 +1,3 @@
-
 create schema db_Banco;
 
 
@@ -78,13 +77,13 @@ create table prestamos
 create table Cuotas
 (
 	idCuota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	idPrestamo INT NOT NULL,
-	fechaMes DATE,
+	idPrestamo INT PRIMARY KEY NOT NULL,
+	fechaMes varchar(10),
 	importe FLOAT, 
 	fechaVencimiento DATE NOT NULL,
-    fechaPago DATE NOT NULL,
-    estado bit,
-    FOREIGN KEY (idPrestamo) REFERENCES prestamos(idPrestamo)
+    fechaPago DATE,
+    estado int
+    
 );
 create table transferencias
 (
@@ -266,5 +265,15 @@ where c.Estado = 1;
 )
 BEGIN
 UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
+END$$
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuenta(
+        IN numerocuenta VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	Select * from cuentas as c
+	where  c.Numerocuenta  =  numerocuenta;
 END$$
 CALL SP_ListarCuentas

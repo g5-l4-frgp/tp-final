@@ -29,9 +29,9 @@ public class CuentaNegocio implements Interface_Cuenta {
 	
 }
 	@Override
-	public Persona Obtener_usuario(String nombrePersona) {
+	public Persona Obtener_usuario(String dni) {
 		// TODO Auto-generated method stub
-		return cuentaDAO.Obtener_usuario(nombrePersona);
+		return cuentaDAO.Obtener_usuario(dni);
 	}
 	@Override
 	public ArrayList<Cuentas> listaCuentas() {

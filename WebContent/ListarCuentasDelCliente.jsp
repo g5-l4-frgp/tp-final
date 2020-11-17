@@ -1,3 +1,5 @@
+<%@page import="Entidad.Cuentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,26 +37,35 @@
 <jsp:include page="MenuCliente.html"></jsp:include>
 <h1 class="mt-3 text-center mb-4 text-info text-info">Cuentas</h1>
 <div class="container">
+<%
+ArrayList<Cuentas> lista = new ArrayList<Cuentas>();
+lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
+%>
 <table class="table ">
   <thead class="thead-light">
     <tr>
 
-      <th scope="col">Cuenta</th>
-      <th scope="col">Total</th>
+      <th scope="col">Tipo de cuenta</th>
+      <th scope="col">Monto</th>
+      <th scope="col">fecha de ultimo movimiento</th>
       <th class="fila" scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td class="text-light">Cuenta corriente</td>
-      <td class="text-success"><b>$10000</b></td>
-      <td><button type="submit" class="btn btn-primary boton ">Movimientos</button></td> 
+  <tbody class="text-light">
+    <% if(lista!=null){
+  		 for(Cuentas e : lista)
+		{
+%>
+    <tr class="text-light">
+      <form action="Controlador" method="get">
+      <td><%=e.getIdtipo()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
+      <td><%=e.getSaldo()%></td>
+      <td><%=e.getMovimiento().getFecha()%></td>
+      <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
+    </form>
     </tr>
-        <tr>
-      <td class="text-light">Caja de ahorro</td>
-      <td class="text-success"><b>$10000</b></td>
-      <td><button type="submit" class="btn btn-primary boton ">Movimientos</button></td> 
-    </tr>
+      <%  } 
+  		 }%>	
   </tbody>
 </table>
 </div>

@@ -42,7 +42,7 @@ public class CuentaDAO {
 		{
 			cn= DriverManager.getConnection(host+dbName, user, pass);
 			CallableStatement cst= cn.prepareCall(query);
-			cst.setInt(1, cuenta.getIdtipo());
+			cst.setString(1, cuenta.getIdtipo());
 			cst.setInt(2, cuenta.getIdPersona().getID());
 			cst.setString(3, cuenta.getCBU());
 			cst.setString(4, cuenta.getNumeroCuenta());
@@ -181,6 +181,9 @@ public class CuentaDAO {
 			return aux;
 			
 		}
+
+
+	
 
 	
 	

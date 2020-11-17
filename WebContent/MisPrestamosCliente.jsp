@@ -1,3 +1,6 @@
+<%@page import="Entidad.Prestamos"%>
+<%@page import="Entidad.Cuentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,24 +27,36 @@
 <body id="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
+<%
+ArrayList<Prestamos> lista = new ArrayList<Prestamos>();
+lista = (ArrayList<Prestamos>)request.getAttribute("listaPrestamos");
+%>
 <table class="table ">
   <thead class="thead-light">
     <tr>
 
-      <th scope="col">Descripción</th>
-      <th scope="col">Cuotas </th>
+      <th scope="col">Cantidad cuotas pagas </th>
       <th scope="col">Cuotas totales</th>
+      <th scope="col">Fecha de Solicitud</th>
       <th><th>
     </tr>
   </thead>
   <tbody class="text-light">
-    <tr>
-      <td>Volkom</td>
-      <td>8</td>
-      <td>12</td>
-      <td><button type="submit" class="btn btn-success boton ">Abonar</button></td>  
+    <% if(lista!=null){
+  		 for(Prestamos e : lista)
+		{
+%>
+    <tr class="text-light">
+      <form action="Controlador" method="get">
+      <td><%=e.getCuotasPagas()%><input type="hidden" name="idUsuario" value="<%=e.getCuota().getCuota()%>"></td>
+      <td><%=e.getCantidadCuotas()%></td>
+      <td><%=e.getCliente().getDNI()%></td>
     
-  
+      <td><button type="submit" class="btn btn-primary" name="btnPagar" >Paga</button></td> 
+    </form>
+    </tr>
+      <%  } 
+  		 }%>
   </tbody>
 </table>
 </div>

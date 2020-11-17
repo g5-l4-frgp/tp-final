@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.org.apache.xpath.internal.operations.Neg;
+
 import Entidad.Cuentas;
 import Entidad.Persona;
 import Negocio.CuentaNegocio;
+import Negocio.Persona_Negocio;
 
 /**
  * Servlet implementation class ServletCuenta
@@ -70,6 +73,7 @@ public class ServletCuenta extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/ListarCuentasAdmin.jsp");  
 				       rd.forward(request, response);
 		}
+			
 	}
 		
 	

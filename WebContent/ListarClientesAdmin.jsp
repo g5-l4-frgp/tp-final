@@ -64,11 +64,8 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col">Email</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Teléfono</th>
       <th scope="col">Eliminar</th>
-      <th scope="col">Modificar</th>
+      <th scope="col">Crear cuenta</th>
       <th scope="col">Detalles</th>
      
     </tr>
@@ -85,11 +82,12 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
       <td><%=e.getNombre() %></td>
       <td><%=e.getApellido()%></td>
       <td><%=e.getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary" name="btnModificar">Modificar</button></td> 
-      <td><button type="submit" class="btn btn-success">Detalles</button></td> 
+      <td><button type="submit" class="btn btn-danger" name="btnEliminarCliente">Eliminar</button></td> 
+      <td><button type="submit" class="btn btn-primary" name="btnCrearCuenta">Crear cuenta</button></td> 
+      <td><button type="submit" class="btn btn-success"name="btnDetalleCliente">Detalles</button></td> 
     </form>
     </tr>
+    
       <%  } 
   		 }%>	
   </tbody>

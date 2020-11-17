@@ -1,4 +1,5 @@
-<%@page import="Entidad.Cuentas"%>
+<%@page import="Entidad.Prestamos"%>
+<%@page import="Entidad.Persona"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -16,22 +17,12 @@
 <Style>
  	.table
  	{
- 		width: 100%;
-    max-width: 60%;
+ 	
+ 	width: 100%;
+    max-width: 40%;
     padding: 15px;
     margin: auto;
- 	}
- 	.fila{
- 	width: 30%;
- 	}
- 	.Mover
- 	{
- 	
-		margin-right: 20px;
-		margin-top: 5px;
- 	}
- 	.boton{
- 	width: 100%;
+    margin-top:15px;
  	}
  	#Filtrar
  	{
@@ -39,15 +30,21 @@
  	width: 20%;
  	margin-left: 59%;
  	}
-    #Fondo{
+ 	.Mover
+ 	{
+ 	
+		margin-right: 20px;
+		margin-top: 5px;
+ 	}
+ 	 #Fondo{
         background-color:#020648;
      }
+ 	 
 </Style>
-<title>Listado de cuentas</title>
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-<h1 class="mt-3 text-center mb-4 text-info text-light ">Cuentas</h1>
+
 <div class="container Mover  ">
 <div class="row mt-5  ">
 
@@ -56,34 +53,32 @@
     </div>
     </div>
 <%
-ArrayList<Cuentas> lista = new ArrayList<Cuentas>();
-lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
+ArrayList<Prestamos> lista = new ArrayList<Prestamos>();
+lista = (ArrayList<Prestamos>)request.getAttribute("lista");
 %>
-<h1 class="mt-3 text-center mb-4 text-info text-info ">Cuentas</h1>
 <div class="container">
 <table class="table ">
   <thead class="thead-light">
-    <tr>
-
-      <th scope="col">Nro de cuenta</th>
-      <th scope="col">Tipo de cuenta</th>
+    <tr >
       <th scope="col">DNI</th>
-      <th class="fila" scope="col"></th>
-      <th class="fila" scope="col"></th>
+      <th scope="col">Fecha de Solicitud</th>
+      <th scope="col">Ver Solicitud</th>
+
+     
     </tr>
   </thead>
-  <tbody class="text-light">
-    <% if(lista!=null){
-  		 for(Cuentas e : lista)
+  <tbody>
+   <% if(lista!=null){
+  		 for(Prestamos e : lista)
 		{
 %>
     <tr class="text-light">
       <form action="Controlador" method="get">
-      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
-      <td><%=e.getIdtipo()%></td>
-      <td><%=e.getIdPersona().getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
+      
+      <td><%=e.getCliente().getDNI()%><input type="hidden" name="idPrestamo" value="<%=e.getIdPrestamo()%>"></td>
+      <td><%=e.getFechaSoli() %></td>
+      <td><button type="submit" class="btn btn-danger" name="btnSolicitud">Ver Solicitud</button></td> 
+
     </form>
     </tr>
       <%  } 
