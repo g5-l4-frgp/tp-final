@@ -1,5 +1,5 @@
-<%@page import="Entidad.Cuentas"%>
 <%@page import="Entidad.Persona"%>
+<%@page import="Entidad.Cuentas"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,55 +23,61 @@
  
     margin: auto;
  	 }
- 	 
- 	    #Fondo{
+   #Fondo{
         background-color:#020648;
      }
 </Style>
-<title>Alta de cuenta</title>
+<title>Modificar de cuenta</title>
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info  text-light">Alta de cuenta</h1>
-<form action="ServletCuenta" method="get" class="Alta">
-<%
-	Persona usuario= new Persona();
-usuario= (Persona)request.getAttribute("usuario");
-Cuentas cuenta= new Cuentas();
-cuenta=(Cuentas)request.getAttribute("cuenta");
-String dni= usuario.getDNI();
-String cbu= cuenta.getCBU();
-Float Saldo= cuenta.getSaldo();
-String numero= cuenta.getNumeroCuenta();
-%>
+<h1 class="mt-3 text-center mb-1 text-info  text-light">Modificar cuenta</h1>
+<form class="Alta" action="ServletCuenta" method="get">
+  <%
+  Cuentas cuenta = new Cuentas();
+  cuenta = (Cuentas) request.getAttribute("cuenta");
+  Persona usuario = new Persona();
+  usuario = (Persona) request.getAttribute("usuario");
+  %>
+  <%
+  String tipo=null;
+  switch (cuenta.getIdtipo())
+  
+		{
+		case 1:
+		{
+			tipo="Corriente";
+		}
+		case 2:
+		{
+			tipo="Caja de ahorro";
+		}
+		}
+		%>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4"class="text-light">DNI</label>
-      <input type="text" class="form-control" id="inputAddress"value="<%=dni%>" name="txtDNI">
+      <label for="inputEmail4" class="text-light">Usuario</label>
+      <input type="text" class="form-control"value="<%=usuario.getNickUsuario()%>"  id="inputEmail">
     </div>
-          <div class="form-group col-md-6">
-      <label for="inputState"class="text-light">Tipo de cuenta</label>
-      <select name="seleccionCuenta" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option value =1>Cuenta Corriente</option>
-        <option value =2>Caja de ahorro</option> 
-      </select>
+     <div class="form-group col-md-6">
+      <label for="inputEmail4" class="text-light">Tipo de cuenta</label>
+      <input type="text" class="form-control"value="<%=tipo%>"  id="inputEmail">
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4"class="text-light">CBU</label>
-      <input type="text" class="form-control"value="<%=cbu%>" name="txtCBU">
+      <input type="email" class="form-control"value="<%=cuenta.getCBU()%>"  id="inputEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4"class="text-light">Saldo</label>
-      <input type="text" class="form-control"value="<%=Saldo%>" name="txtSaldo">
+      <label for="inputPassword4"class="text-light">Saldo límite</label>
+      <input type="text" class="form-control"value="<%=cuenta.getSaldo()%>"  id="inputPassword">
     </div>
-    <input type="hidden" name="NumeroCuenta" value="<%=numero%>">
   </div>
-  <button type="submit" class="btn btn-primary crear" name="btnAceptar">Crear cuenta</button>
-  </form>
+
+  <button type="submit" class="btn btn-success crear"name="btnVolver" >Volver</button>
+</form>
 </div>
 </body>
 </html>

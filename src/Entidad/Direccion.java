@@ -41,7 +41,7 @@ public class Direccion {
 	}
 	
 	public Direccion() {
-		 contador++;
+		contador++;
 		int ID=contador;
 		Calle="";
 	    Altura="";
@@ -50,7 +50,7 @@ public class Direccion {
 	}
 	
 	public Direccion(String alt,String Loca,String Prov,String Call) {
-		 contador++;
+		contador++;
 		int ID=contador;
 		Calle=Call;
 		Altura=alt;

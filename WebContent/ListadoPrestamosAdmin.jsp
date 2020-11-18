@@ -1,4 +1,4 @@
-
+<%@page import="Entidad.Prestamos"%>
 <%@page import="Entidad.Persona"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -44,58 +44,47 @@
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-     <form action="Controlador" method="get">
+
 <div class="container Mover  ">
 <div class="row mt-5  ">
 
       <input type="text" class="form-control" id="Filtrar">
       <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
     </div>
-
-    <div class="row mt-5  ">
-      <button type="submit" class="btn btn-primary ml-2" name="btnCrearUsuario">Crear Usuario</button>
-    </div>
-
     </div>
 <%
-ArrayList<Persona> lista = new ArrayList<Persona>();
-Persona usuario = new Persona();
-lista = (ArrayList<Persona>)request.getAttribute("lista");
+ArrayList<Prestamos> lista = new ArrayList<Prestamos>();
+lista = (ArrayList<Prestamos>)request.getAttribute("lista");
 %>
 <div class="container">
 <table class="table ">
   <thead class="thead-light">
     <tr >
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col">Eliminar</th>
-      <th scope="col">Crear cuenta</th>
-      <th scope="col">Detalles</th>
+      <th scope="col">Fecha de Solicitud</th>
+      <th scope="col">Ver Solicitud</th>
+
      
     </tr>
   </thead>
   <tbody>
    <% if(lista!=null){
-  		 for(Persona e : lista)
+  		 for(Prestamos e : lista)
 		{
 %>
-   <form action="Controlador" method="post">
     <tr class="text-light">
-      <td><%=e.getNombre() %><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
-      <td><%=e.getApellido()%></td>
-      <td><%=e.getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger" name="btnEliminarCliente">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary" name="btnCrearCuenta">Crear cuenta</button></td> 
-      <td><button type="submit" class="btn btn-success"name="btnDetalleCliente">Detalles</button></td> 
+      <form action="Controlador" method="get">
+      
+      <td><%=e.getCliente().getDNI()%><input type="hidden" name="idPrestamo" value="<%=e.getIdPrestamo()%>"></td>
+      <td><%=e.getFechaSoli() %></td>
+      <td><button type="submit" class="btn btn-danger" name="btnSolicitud">Ver Solicitud</button></td> 
+
+    </form>
     </tr>
-    
-</form>
       <%  } 
   		 }%>	
   </tbody>
 </table>
 </div>
-  		 </form>
 </body>
 </html>

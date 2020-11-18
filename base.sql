@@ -76,14 +76,15 @@ create table prestamos
 );
 create table Cuotas
 (
-	idCuota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	idCuota INT  NOT NULL AUTO_INCREMENT,
 	idPrestamo INT NOT NULL,
-	fechaMes DATE,
+	fechaMes varchar(10),
 	importe FLOAT, 
 	fechaVencimiento DATE NOT NULL,
-    fechaPago DATE NOT NULL,
-    estado bit,
-    FOREIGN KEY (idPrestamo) REFERENCES prestamos(idPrestamo)
+    fechaPago DATE,
+    estado int,
+    PRIMARY KEY (idCuota,idPrestamo)
+    
 );
 create table transferencias
 (
@@ -154,10 +155,9 @@ DELIMITER $$
 		)
     
 	BEGIN
-	UPDATE usuario set estado = 0 where idUsuario = IdUsuario;
+	UPDATE usuario as u set estado = 0 where u.idUsuario = IdUsuario;
 END$$
-DELIMITER $$
-CREATE PROCEDURE SP_ListarUsuario(
+CREATE PROCEDURE SP_ListarClientes(
         
 		)
 
@@ -176,7 +176,7 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
+	select  u.idUsuario,u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
 	u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
 	inner join direccion as d on d.idDireccion=u.idDireccion
 	inner join contacto as c on c.idContacto = u.idContacto
@@ -256,7 +256,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE SP_ListarCuentas()
 BEGIN
-		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion, u.nombre, u.apellido from cuentas as c
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion,c.idCuenta, u.nombre, u.apellido,u.DNI from cuentas as c
 		inner join usuario as u on u.idUsuario = c.idUsuario
 where c.Estado = 1;
    END$$
@@ -265,6 +265,52 @@ where c.Estado = 1;
        IN idcuenta int
 )
 BEGIN
-UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
+UPDATE cuentas as c set estado = 0 where c.idCuenta = Idcuenta;
 END$$
-CALL SP_ListarCuentas
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuenta(
+        IN numerocuenta VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	Select * from cuentas as c
+	where  c.Numerocuenta  =  numerocuenta;
+END$$
+DELIMITER $$
+	CREATE PROCEDURE SP_ModificarCuenta(
+		IN idcuenta INT,
+        IN Tipo INT,
+		IN IdUsuario INT,
+		IN cbu VARCHAR(22),
+        IN numeroCuenta VARCHAR(13),
+		IN Saldo FLOAT,
+		IN FechaCreacion DATE,		
+		IN Estado BIT
+        )
+        
+	BEGIN
+
+		UPDATE cuentas set idtipo =Tipo, idUsuario = IdUsuario, CBU =cbu, Numerocuenta = numeroCuenta, saldo = Saldo, fechaCreacion = FechaCreacion,estado = Estado
+		where IdCuenta = idCuenta;
+		
+	END$$
+    DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuentaxId(
+        IN Idcuenta VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	select * from cuentas as c
+	where c.idCuenta = idcuenta;
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarCuentasXId(
+	IN IdUsuario INT
+)
+BEGIN
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion,c.idCuenta, u.nombre, u.apellido,u.DNI from cuentas as c
+		inner join usuario as u on u.idUsuario = c.idUsuario
+		where u.idUsuario = IdUsuario;
+   END$$

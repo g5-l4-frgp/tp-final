@@ -9,6 +9,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
  	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <Style>
  	.Alta{
  	width: 100%;
@@ -17,58 +18,63 @@
     margin: auto;
  	    }
  	 .crear{
- 	  	width: 100%;
- 
-    margin: auto;
+ 	  	width: 25%;
  	 }
- 	 
+ 	 #inputMonto{
+ 	 	width: 50%;
+ 	 	margin: auto;
+ 	 	
+ 	 }
+ 	 #lblMonto{
+ 	     display: block;
+    	 text-align: center;
+	 } 	 
  	    #Fondo{
         background-color:#020648;
      }
+    
+     #tituloEspacio{
+    	margin-bottom:50px;
+     }
 </Style>
-<title>Tranferencia a cuenta propia</title>
+
+<title>Prestamo</title>
 </head>
-<body id="Fondo">
-<jsp:include page="MenuCliente.html"></jsp:include>
+<body ID="Fondo">
+<jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-info">Transferencia a cuenta propia</h1>
+<h1 class="mt-3 text-center mb-1 text-info" ID="tituloEspacio">Prestamo cliente</h1>
 <form class="Alta">
   <div class="form-row">
-           <div class="form-group col-md-4">
-      <label for="inputState"class="text-light">Cuenta de origen</label>
-      <select id="inputState" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
-      </select>
+           <div class="form-group col-md-6">
+      <label for="inputState" class="text-light">Cliente</label>
+      <input type="text" class="form-control" id="inputCliente">
     </div>
-   <div class="form-group col-md-4">
-      <label for="inputState"class="text-light">Cuenta de destino</label>
-      <select id="inputState" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
-      </select>
-   </div>
-   <div class="form-group col-md-4">
-      <label for="inputState"class="text-light">Concepto</label>
-      <select id="inputState" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option>Seguro</option>
-        <option>Alquiler</option>
-        <option>Varios</option>
-      </select>
-   </div>
+    <div class="form-group col-md-6">
+      <label for="inputState" class="text-light">Cuenta</label>
+      <input type="text" class="form-control" id="inputCuenta">
+    </div>
   </div>
     <div class="form-row">
-    <div class="form-group col-md-12">
-      <label id="lblMonto" for="lblMonto"class="text-light">Monto</label>
-      <input type="text" class="form-control" id="inputMonto">
+           <div class="form-group col-md-6">
+      <label for="inputState" class="text-light">Cuotas</label>
+      <input type="text" class="form-control" id="inputCliente">
     </div>
-    
+    <div class="form-group col-md-6">
+      <label for="inputState" class="text-light">Monto solicitado</label>
+      <input type="text" class="form-control" id="inputCuenta">
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-primary crear mt-2 text-light">Transferir</button>
+    </div>
+	<div class="form-row">
+	<div class="form-group col-md-6" style="margin-left:610px;">
+  <button type="submit" class="btn btn-success crear ">Aprobar</button>
+ 
+
+  <button type="submit" class="btn btn-danger crear  ">Desaprobar</button>
+ </div>
+  </div>
 </form>
 </div>
 </body>

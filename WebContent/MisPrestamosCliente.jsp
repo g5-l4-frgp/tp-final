@@ -1,10 +1,10 @@
+<%@page import="Entidad.Prestamos"%>
 <%@page import="Entidad.Cuentas"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,80 +16,47 @@
 <Style>
  	.table
  	{
- 		width: 100%;
-    max-width: 60%;
-    padding: 15px;
-    margin: auto;
+ 	margin: 50px;
  	}
- 	.fila{
- 	width: 30%;
- 	}
- 	.Mover
- 	{
- 	
-		margin-right: 20px;
-		margin-top: 5px;
- 	}
- 	.boton{
- 	width: 100%;
- 	}
- 	#Filtrar
- 	{
- 	
- 	width: 20%;
- 	margin-left: 59%;
- 	}
-    #Fondo{
+ #Fondo{
         background-color:#020648;
      }
 </Style>
-<title>Listado de cuentas</title>
+<title>Menu de pago</title>
 </head>
 <body id="Fondo">
-<jsp:include page="MenuAdmin.html"></jsp:include>
-<h1 class="mt-3 text-center mb-4 text-info text-light ">Cuentas</h1>
-<div class="container Mover  ">
-<div class="row mt-5  ">
-
-      <input type="text" class="form-control" id="Filtrar">
-      <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
-    </div>
-    </div>
-<%
-ArrayList<Cuentas> lista = new ArrayList<Cuentas>();
-lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
-%>
-<h1 class="mt-3 text-center mb-4 text-info text-info ">Cuentas</h1>
+<jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
+<%
+ArrayList<Prestamos> lista = new ArrayList<Prestamos>();
+lista = (ArrayList<Prestamos>)request.getAttribute("listaPrestamos");
+%>
 <table class="table ">
   <thead class="thead-light">
     <tr>
 
-      <th scope="col">Nro de cuenta</th>
-      <th scope="col">Tipo de cuenta</th>
-      <th scope="col">DNI</th>
-      <th class="fila" scope="col"></th>
-      <th class="fila" scope="col"></th>
+      <th scope="col">Cantidad cuotas pagas </th>
+      <th scope="col">Cuotas totales</th>
+      <th scope="col">Fecha de Solicitud</th>
+      <th><th>
     </tr>
   </thead>
   <tbody class="text-light">
     <% if(lista!=null){
-  		 for(Cuentas e : lista)
+  		 for(Prestamos e : lista)
 		{
-  			 
 %>
- <% String Dni=e.getIdPersona().getDNI();%>
     <tr class="text-light">
-      <form action="ServletCuenta" method="post">
-      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idCuenta" value="<%=e.getID()%>"></td>
-      <td><%=e.getIdtipo()%></td>
-      <td><%=Dni%></td>
-      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
+      <form action="Controlador" method="get">
+      <td><%=e.getCuotasPagas()%><input type="hidden" name="idUsuario" value="<%=e.getCuota().getCuota()%>"></td>
+      <td><%=e.getCantidadCuotas()%></td>
+      <td><%=e.getCliente().getDNI()%></td>
+    
+      <td><button type="submit" class="btn btn-primary" name="btnPagar" >Paga</button></td> 
     </form>
     </tr>
       <%  } 
-  		 }%>	
+  		 }%>
   </tbody>
 </table>
 </div>
