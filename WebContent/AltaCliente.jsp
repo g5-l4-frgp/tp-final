@@ -49,7 +49,7 @@
       <input type="email" class="form-control" name="txtEmail">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Tel�fono</label>
+      <label for="inputPassword4">Telefono</label>
       <input type="text" class="form-control" name="txtTelefono">
     </div>
   </div>

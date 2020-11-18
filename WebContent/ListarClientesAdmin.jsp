@@ -44,13 +44,18 @@
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-
+     <form action="Controlador" method="get">
 <div class="container Mover  ">
 <div class="row mt-5  ">
 
       <input type="text" class="form-control" id="Filtrar">
       <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
     </div>
+
+    <div class="row mt-5  ">
+      <button type="submit" class="btn btn-primary ml-2" name="btnCrearUsuario">Crear Usuario</button>
+    </div>
+
     </div>
 <%
 ArrayList<Persona> lista = new ArrayList<Persona>();
@@ -76,16 +81,12 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
 		{
 %>
     <tr class="text-light">
-      <form action="Controlador" method="get">
-      
-      <td><%=e.getNickUsuario()%><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
-      <td><%=e.getNombre() %></td>
+      <td><%=e.getNombre() %><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
       <td><%=e.getApellido()%></td>
       <td><%=e.getDNI()%></td>
       <td><button type="submit" class="btn btn-danger" name="btnEliminarCliente">Eliminar</button></td> 
       <td><button type="submit" class="btn btn-primary" name="btnCrearCuenta">Crear cuenta</button></td> 
       <td><button type="submit" class="btn btn-success"name="btnDetalleCliente">Detalles</button></td> 
-    </form>
     </tr>
     
       <%  } 
@@ -93,5 +94,6 @@ lista = (ArrayList<Persona>)request.getAttribute("lista");
   </tbody>
 </table>
 </div>
+</form>
 </body>
 </html>

@@ -38,10 +38,22 @@
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <div class="container">
 <h1 class="mt-3 text-center mb-1 text-light">Modificar cliente</h1>
-<form class="Alta" action="controlador" method="get">
+<form class="Alta" action="Controlador" method="get">
   <%
   Persona usuario = new Persona();
   usuario = (Persona) request.getAttribute("usuario");
+  int sexo = 2;
+  int sexoaux;
+  String sexoString = null;
+  if(usuario.getSexo().equals("F"))
+	  sexo = 1;
+  if(sexo==1){
+	  sexoaux = 0;
+	  sexoString = "Masculino";
+  }else{
+	  sexoaux = 1;
+	  sexoString = "Femenino";
+  }
   %>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -50,7 +62,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4" class="text-light">Contraseña</label>
-      <input type="password" class="form-control" value="*********" id="inputPassword"  name="contraseña">
+      <input type="password" class="form-control" value="<%=usuario.getPassword()%>"  placeholder="*********"  id="inputPassword" readonly  name="contraseña">
     </div>
   </div>
     <div class="form-row">
@@ -85,15 +97,30 @@
           <div class="form-group col-md-4">
       <label for="inputState" class="text-light">Sexo</label>
       <select id="inputState" class="form-control" name="sexo">
-        <option selected>Seleccionar...</option>
-        <option>Femenino</option>
-        <option>Masculino</option>
+        <option selected value=<%=sexo%>><%=usuario.getSexo()%></option>
+        <option value=<%=sexoaux%>><%=sexoString %></option>
       </select>
     </div>
       </div>
-  <div class="form-group">
-    <label for="inputAddress" class="text-light">Calle</label>
-    <input type="text" class="form-control"  value="<%=usuario.getDomicilio().getCalle()%>" name="calle" id="inputAddress">
+   <div class="form-group col-md-6">
+	   <label for="inputCity">Nacionalidad</label>
+     <input type="text" class="form-control" value="<%=usuario.getNacionalidad() %>" name="nacionalidad">
+     
+      <label for="inputCity">Fecha de nacimiento</label>
+     <input type="date" class="form-control" value="<%=usuario.getFecha()%>" name="fechaNacimiento">
+   </div>
+
+ </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity" class="text-light">Calle</label>
+      <input type="text" value="<%=usuario.getDomicilio().getCalle()%>" class="form-control" name="calle" id="inputCity">
+    </div>
+ <div class="form-group col-md-6">
+      <label for="inputCity" class="text-light">Altura</label>
+      <input type="text" value="<%=usuario.getDomicilio().getAltura()%>" class="form-control" name="altura" id="inputCity">
+    </div>
+
   </div>
 
   <div class="form-row">
@@ -118,7 +145,6 @@ lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
 
       <th scope="col">Nro de cuenta</th>
       <th scope="col">Tipo de cuenta</th>
-      <th scope="col">DNI</th>
       <th class="fila" scope="col"></th>
       <th class="fila" scope="col"></th>
     </tr>
@@ -132,7 +158,6 @@ lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
       <form action="Controlador" method="get">
       <td><%=e.getNumeroCuenta()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
       <td><%=e.getIdtipo()%></td>
-      <td><%=e.getIdPersona().getDNI()%></td>
       <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
     </form>
     </tr>

@@ -2,10 +2,6 @@ package Entidad;
 
 import java.util.*;
 
-import com.sun.media.jfxmedia.events.NewFrameEvent;
-
-import sun.reflect.ConstructorAccessor;
-
 public class Prestamos {
 	int contador=0;
 	int idPrestamo;

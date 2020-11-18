@@ -97,7 +97,7 @@ public class Controlador extends HttpServlet {
 	        RequestDispatcher rd = request.getRequestDispatcher("/AltaCliente.jsp");   
 	        rd.forward(request, response);   
 		 }
-    	if(request.getParameter("btnEliminar")!=null) {
+    	if(request.getParameter("btnEliminarCliente")!=null) {
 			int id =Integer.parseInt(request.getParameter("idUsuario"));
 		    Persona_Negocio persona_Negocio = new Persona_Negocio();
 		    persona_Negocio.EliminarUsuario(id);
@@ -107,7 +107,7 @@ public class Controlador extends HttpServlet {
 	        rd.forward(request, response);
 			
 		}
-    	if(request.getParameter("btnModificar")!=null) {
+    	if(request.getParameter("btnDetalleCliente")!=null) {
 			int id =Integer.parseInt(request.getParameter("idUsuario"));
 		    Persona_Negocio persona_Negocio = new Persona_Negocio();
 		    Persona usuario = new Persona();
@@ -121,29 +121,29 @@ public class Controlador extends HttpServlet {
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			String sexo="N";
 			LocalDate todayDate = LocalDate.now();
-			String fecha  = todayDate.toString();
-		
-			if(Integer.parseInt(request.getParameter("Sexo"))==1) {
+			//String fecha  = todayDate.toString();
+			String fecha = request.getParameter("fechaNacimiento");
+			if(Integer.parseInt(request.getParameter("sexo"))==1) {
 				sexo = "F";
 			}
 			else {sexo = "M";}
 	        usuario.setEstado(true);
-	        usuario.setDNI(request.getParameter("Dni"));
-	        usuario.setCuil(request.getParameter("Cuil"));
-	        usuario.setNombre(request.getParameter("Nombre"));
-	        usuario.setApellido(request.getParameter("Apellido"));
-			usuario.setNickUsuario(request.getParameter("Usuario"));
+	        usuario.setDNI(request.getParameter("dni"));
+	        usuario.setCuil(request.getParameter("cuil"));
+	        usuario.setNombre(request.getParameter("nombre"));
+	        usuario.setApellido(request.getParameter("apellido"));
+			usuario.setNickUsuario(request.getParameter("usuario"));
 			usuario.setSexo(sexo);
-	        usuario.setPassword(request.getParameter("Password"));
-	        usuario.setNacionalidad(request.getParameter("Nacionalidad"));
+	        usuario.setPassword(request.getParameter("contraseña"));
+	        usuario.setNacionalidad(request.getParameter("nacionalidad"));
 	        usuario.setEstado(true);
 	        usuario.setIdtipo(2);
-			contacto.setEmail(request.getParameter("Email"));
-	        contacto.setTelefono(request.getParameter("Telefono"));
-	        direccion.setAltura(request.getParameter("Altura"));
-	        direccion.setCalle(request.getParameter("Calle"));
-	        direccion.setLocalidad(request.getParameter("Localidad"));
-	        direccion.setProvincia(request.getParameter("Provincia"));
+			contacto.setEmail(request.getParameter("email"));
+	        contacto.setTelefono(request.getParameter("telefono"));
+	        direccion.setAltura(request.getParameter("altura"));
+	        direccion.setCalle(request.getParameter("calle"));
+	        direccion.setLocalidad(request.getParameter("localidad"));
+	        direccion.setProvincia(request.getParameter("provincia"));
 	        negocio.AgregarContacto(contacto);
 	        negocio.SP_AgregarDireccion(direccion);
 	        direccion= negocio.buscarDireccion();
@@ -159,6 +159,16 @@ public class Controlador extends HttpServlet {
 	        rd.forward(request, response);
 			
 		}
+    	if(request.getParameter("btnCancelar_modificar")!=null) {
+    		ArrayList<Persona> lista = negocio.lista_usuarios();
+			request.setAttribute("lista", lista);		
+			RequestDispatcher rd = request.getRequestDispatcher("/ListarClientesAdmin.jsp");   
+	        rd.forward(request, response);
+    	}
+    	if(request.getParameter("btnCrearUsuario")!=null) {
+			RequestDispatcher rd = request.getRequestDispatcher("/AltaCliente.jsp");
+	        rd.forward(request, response);
+    	}
     	
     }
 	/**
