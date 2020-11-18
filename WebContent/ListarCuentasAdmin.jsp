@@ -1,3 +1,5 @@
+<%@page import="Entidad.Cuentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,8 +24,20 @@
  	.fila{
  	width: 30%;
  	}
+ 	.Mover
+ 	{
+ 	
+		margin-right: 20px;
+		margin-top: 5px;
+ 	}
  	.boton{
  	width: 100%;
+ 	}
+ 	#Filtrar
+ 	{
+ 	
+ 	width: 20%;
+ 	margin-left: 59%;
  	}
     #Fondo{
         background-color:#020648;
@@ -34,6 +48,18 @@
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 <h1 class="mt-3 text-center mb-4 text-info text-light ">Cuentas</h1>
+<div class="container Mover  ">
+<div class="row mt-5  ">
+
+      <input type="text" class="form-control" id="Filtrar">
+      <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
+    </div>
+    </div>
+<%
+ArrayList<Cuentas> lista = new ArrayList<Cuentas>();
+lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
+%>
+<h1 class="mt-3 text-center mb-4 text-info text-info ">Cuentas</h1>
 <div class="container">
 <table class="table ">
   <thead class="thead-light">
@@ -42,23 +68,26 @@
       <th scope="col">Nro de cuenta</th>
       <th scope="col">Tipo de cuenta</th>
       <th scope="col">DNI</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Nombre</th>
       <th class="fila" scope="col"></th>
       <th class="fila" scope="col"></th>
     </tr>
   </thead>
   <tbody class="text-light">
-    <tr>
-   	  <td>123456789</td>
-      <td>Caja de ahorro</td>
-      <td>33827751</td>
-      <td>Quintero</td>
-      <td>Juan Francisco</td>
-      <td><button type="submit" class="btn btn-danger boton ">Eliminar</button></td>
-      <td><button type="submit" class="btn btn-primary boton ">Modificar</button></td> 
- 
- 
+    <% if(lista!=null){
+  		 for(Cuentas e : lista)
+		{
+%>
+    <tr class="text-light">
+      <form action="Controlador" method="get">
+      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
+      <td><%=e.getIdtipo()%></td>
+      <td><%=e.getIdPersona().getDNI()%></td>
+      <td><button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button></td> 
+      <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
+    </form>
+    </tr>
+      <%  } 
+  		 }%>	
   </tbody>
 </table>
 </div>

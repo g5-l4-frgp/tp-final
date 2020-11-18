@@ -1,5 +1,5 @@
 
- <%@page import="Entidad.Persona"%>
+<%@page import="Entidad.Persona"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -53,9 +53,9 @@
     </div>
     </div>
 <%
-ArrayList<Persona> listaU = new ArrayList<Persona>();
+ArrayList<Persona> lista = new ArrayList<Persona>();
 Persona usuario = new Persona();
-listaU = (ArrayList<Persona>)request.getAttribute("listaU");
+lista = (ArrayList<Persona>)request.getAttribute("lista");
 %>
 <div class="container">
 <table class="table ">
@@ -64,32 +64,30 @@ listaU = (ArrayList<Persona>)request.getAttribute("listaU");
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col">Email</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Teléfono</th>
       <th scope="col">Eliminar</th>
-      <th scope="col">Modificar</th>
+      <th scope="col">Crear cuenta</th>
       <th scope="col">Detalles</th>
      
     </tr>
   </thead>
   <tbody>
-   <% if(listaU!=null){
-  		 for(Persona e : listaU)
+   <% if(lista!=null){
+  		 for(Persona e : lista)
 		{
 %>
     <tr class="text-light">
       <form action="Controlador" method="get">
       
-      <td><%=e.getNickUsuario()%><input type="hidden" name="nombreUsuario" value="<%=e.getNickUsuario()%>"></td>
+      <td><%=e.getNickUsuario()%><input type="hidden" name="idUsuario" value="<%=e.getID()%>"></td>
       <td><%=e.getNombre() %></td>
       <td><%=e.getApellido()%></td>
       <td><%=e.getDNI()%></td>
-      <td><button type="submit" class="btn btn-danger ">Eliminar</button></td> 
-      <td><button type="submit" class="btn btn-primary ">Modificar</button></td> 
-      <td><button type="submit" class="btn btn-success">Detalles</button></td> 
+      <td><button type="submit" class="btn btn-danger" name="btnEliminarCliente">Eliminar</button></td> 
+      <td><button type="submit" class="btn btn-primary" name="btnCrearCuenta">Crear cuenta</button></td> 
+      <td><button type="submit" class="btn btn-success"name="btnDetalleCliente">Detalles</button></td> 
     </form>
     </tr>
+    
       <%  } 
   		 }%>	
   </tbody>

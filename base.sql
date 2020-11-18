@@ -61,7 +61,7 @@ create table movimientos
 
 create table prestamos
 (
-	idPrestamo INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	idPrestamo INT  NOT NULL AUTO_INCREMENT,
 	idCliente INT,
 	idMovimiento INT,
 	importeConIntereses FLOAT,
@@ -70,20 +70,22 @@ create table prestamos
 	pagoMesual FLOAT,
 	cantidadCuotas INT,
 	idCuenta INT,
-	estado bit,
-	FOREIGN KEY (idCuenta) REFERENCES cuentas(idCuenta)
+	estado INT,
+	FOREIGN KEY (idCuenta) REFERENCES cuentas(idCuenta),
+    primary key (idPrestamo,idCliente)
 
 );
 create table Cuotas
 (
-	idCuota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	idPrestamo INT NOT NULL,
-	fechaMes DATE,
+	idCuota INT  NOT NULL AUTO_INCREMENT,
+	idPrestamo INT  NOT NULL,
+	fechaMes varchar(10),
 	importe FLOAT, 
 	fechaVencimiento DATE NOT NULL,
-    fechaPago DATE NOT NULL,
-    estado bit,
-    FOREIGN KEY (idPrestamo) REFERENCES prestamos(idPrestamo)
+    fechaPago DATE,
+    estado int,
+    primary key (idCuota,idPrestamo)
+    
 );
 create table transferencias
 (
@@ -156,8 +158,7 @@ DELIMITER $$
 	BEGIN
 	UPDATE usuario set estado = 0 where idUsuario = IdUsuario;
 END$$
-DELIMITER $$
-CREATE PROCEDURE SP_ListarUsuario(
+CREATE PROCEDURE SP_ListarClientes(
         
 		)
 
@@ -267,4 +268,41 @@ where c.Estado = 1;
 BEGIN
 UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
 END$$
-CALL SP_ListarCuentas
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuenta(
+        IN numerocuenta VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	Select * from cuentas as c
+	where  c.Numerocuenta  =  numerocuenta;
+END$$
+
+   DELIMITER $$
+       CREATE PROCEDURE SP_AltaPrestamo(
+       IN IDPrestamo int,
+       IN IDCliente int,
+       IN IDMovimiento int,
+       IN importeIntereses float,
+       IN ImportePedido float,
+       IN PlazoPago int,
+       IN PagoMesual float,
+       IN CantidadCuotas int,
+       IN IDCuenta int,
+       IN Estado int
+)
+BEGIN
+INSERT prestamos (idPrestamo,idCliente,idMovimiento,importeConIntereses,importePedido,plazoPago,pagoMesual,cantidadCuotas,idCuenta,estado)
+values(IDPrestamo,IDCliente,IDMovimiento,importeIntereses,ImportePedido,PlazoPago,PagoMesual,CantidadCuotas,IDCuenta,Estado);
+END$$
+DELIMITER $$
+   DELIMITER $$
+       CREATE PROCEDURE SP_ModificarPrestamo(
+       IN IDPrestamo int,
+       IN Estado int
+)
+BEGIN
+UPDATE prestamos set estado = Estado where idPrestamo = IDPrestamo;
+END$$
+DELIMITER $$
