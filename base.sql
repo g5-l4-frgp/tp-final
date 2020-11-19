@@ -44,7 +44,7 @@ create table cuentas
 	idUsuario INT,
 	fechaCreacion DATETIME,
 	CBU VARCHAR(22),
-    Numerocuenta VARCHAR(12),
+    Numerocuenta VARCHAR(13),
 	saldo FLOAT,
 	estado bit,
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
@@ -297,13 +297,17 @@ DELIMITER $$
 	END$$
     DELIMITER $$
     CREATE PROCEDURE SP_BuscarCuentaxId(
-        IN Idcuenta VARCHAR(25)
+        IN Idcuenta INT
 		)
     
 	BEGIN
-	
-	select * from cuentas as c
-	where c.idCuenta = idcuenta;
+	select cu.idCuenta, cu.idTipo, cu.idUsuario, cu.CBU, cu.Numerocuenta, cu.saldo, cu.fechaCreacion, u.idUsuario, u.idDireccion,
+    u.nombre, u.apellido, u.nickUsuario, u.idContacto, u.DNI, u.CUIL, u.sexo, u.nacionalidad, u.fechaNacimiento, u.estado,
+    d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from cuentas as cu
+    inner join usuario as u on u.idUsuario = cu.idUsuario
+    inner join contacto as c on u.idContacto = c.idContacto
+    inner join direccion as d on u.idDireccion = d.idDireccion
+	where cu.idCuenta = idcuenta;
 END$$
 DELIMITER $$
 CREATE PROCEDURE SP_ListarCuentasXId(

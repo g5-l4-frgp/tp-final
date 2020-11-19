@@ -58,7 +58,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4" class="text-light">Usuario</label>
-      <input type="text" class="form-control" value="<%=usuario.getNickUsuario()%>" id="inputEmail"readonly name="usuario">
+      <input type="text" class="form-control" value="<%=usuario.getNickUsuario()%>" id="inputEmail" readonly name="usuario">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4" class="text-light">Contraseña</label>
@@ -156,7 +156,7 @@ lista = (ArrayList<Cuentas>)request.getAttribute("listaCuenta");
 %>
     <tr class="text-light">
       <form action="Controlador" method="get">
-      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idUsuario" value="<%=e.getIdPersona()%>"></td>
+      <td><%=e.getNumeroCuenta()%><input type="hidden" name="idCuenta" value="<%=e.getID()%>"></td>
       <td><%=e.getIdtipo()%></td>
       <td><button type="submit" class="btn btn-primary" name="btnDetalle_Cuenta" >Ver Detalle</button></td> 
     </form>

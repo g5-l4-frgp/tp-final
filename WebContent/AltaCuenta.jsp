@@ -35,43 +35,37 @@
 <div class="container">
 <h1 class="mt-3 text-center mb-1 text-info  text-light">Alta de cuenta</h1>
 <form action="ServletCuenta" method="get" class="Alta">
-<%
-	Persona usuario= new Persona();
-usuario= (Persona)request.getAttribute("usuario");
-Cuentas cuenta= new Cuentas();
-cuenta=(Cuentas)request.getAttribute("cuenta");
-String dni= usuario.getDNI();
-String cbu= cuenta.getCBU();
-Float Saldo= cuenta.getSaldo();
-String numero= cuenta.getNumeroCuenta();
-%>
+	<%
+	Cuentas cuenta= new Cuentas();
+	cuenta=(Cuentas)request.getAttribute("cuenta");
+	%>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4"class="text-light">DNI</label>
-      <input type="text" class="form-control" id="inputAddress"value="<%=dni%>" name="txtDNI">
+      <input type="text" class="form-control" id="inputDni" value="${cuenta.getIdPersona().getDNI()}" name="txtDNI">
     </div>
           <div class="form-group col-md-6">
       <label for="inputState"class="text-light">Tipo de cuenta</label>
       <select name="seleccionCuenta" class="form-control">
         <option selected>Seleccionar...</option>
-        <option value =1>Cuenta Corriente</option>
-        <option value =2>Caja de ahorro</option> 
+        <option value=1>Cuenta Corriente</option>
+        <option value=2>Caja de ahorro</option> 
       </select>
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4"class="text-light">CBU</label>
-      <input type="text" class="form-control"value="<%=cbu%>" name="txtCBU">
+      <input type="text" class="form-control" value="${cuenta.getCBU()}" name="txtCBU">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4"class="text-light">Saldo</label>
-      <input type="text" class="form-control"value="<%=Saldo%>" name="txtSaldo">
+      <input type="text" class="form-control" value="${cuenta.getSaldo()}" name="txtSaldo">
     </div>
-    <input type="hidden" name="NumeroCuenta" value="<%=numero%>">
+    <input type="hidden" name="NumeroCuenta" value="${cuenta.getNumeroCuenta()}">
   </div>
   <button type="submit" class="btn btn-primary crear" name="btnAceptar">Crear cuenta</button>
-  </form>
+ </form>
 </div>
 </body>
 </html>

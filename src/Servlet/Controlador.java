@@ -98,7 +98,6 @@ public class Controlador extends HttpServlet {
 	        negocio.SPAltaUsuario(usuario,fecha);
 	        Date fechanueva= new Date();
 	        Cuentas cuenta = new Cuentas(0,usuario,fechanueva,10000);
-	        request.setAttribute("usuario",usuario);
 	        request.setAttribute("cuenta",cuenta);
 	        RequestDispatcher rd = request.getRequestDispatcher("/AltaCuenta.jsp");   
 	        rd.forward(request, response);   
@@ -174,17 +173,19 @@ public class Controlador extends HttpServlet {
     		Persona_Negocio negocio2=new Persona_Negocio();
     		Persona usuario= new Persona();
     		usuario=negocio2.BuscarUsuarioXID(id);
-    		request.setAttribute("usuario", usuario);	
-			RequestDispatcher rd = request.getRequestDispatcher("/AltaCuenta.jsp");
-	        rd.forward(request, response);
+    		Date fechanueva= new Date();
+	        Cuentas cuenta = new Cuentas(0,usuario,fechanueva,10000);
+	        request.setAttribute("cuenta",cuenta);
+	        RequestDispatcher rd = request.getRequestDispatcher("/AltaCuenta.jsp");   
+	        rd.forward(request, response);   
 	        
     	}
     	if(request.getParameter("btnDetalle_Cuenta")!=null) {
-    		int id =Integer.parseInt(request.getParameter("idUsuario"));
-    		Persona_Negocio negocio2=new Persona_Negocio();
-    		Persona usuario= new Persona();
-    		usuario=negocio2.BuscarUsuarioXID(id);
-    		request.setAttribute("usuario", usuario);	
+    		int id =Integer.parseInt(request.getParameter("idCuenta"));
+    		CuentaNegocio negocioCuenta =new CuentaNegocio();
+    		Cuentas cuenta = new Cuentas();
+    		cuenta =  negocioCuenta.BuscarCuentasXID(id);
+    		request.setAttribute("cuenta", cuenta);	
 			RequestDispatcher rd = request.getRequestDispatcher("/DetalleCuenta.jsp");
 	        rd.forward(request, response);
     	}

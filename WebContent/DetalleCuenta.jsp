@@ -37,8 +37,6 @@
   <%
   Cuentas cuenta = new Cuentas();
   cuenta = (Cuentas) request.getAttribute("cuenta");
-  Persona usuario = new Persona();
-  usuario = (Persona) request.getAttribute("usuario");
   %>
   <%
   String tipo=null;
@@ -58,7 +56,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4" class="text-light">Usuario</label>
-      <input type="text" class="form-control"value="<%=usuario.getNickUsuario()%>"  id="inputEmail">
+      <input type="text" class="form-control"value="<%=cuenta.getIdPersona().getNickUsuario()%>"  id="inputEmail">
     </div>
      <div class="form-group col-md-6">
       <label for="inputEmail4" class="text-light">Tipo de cuenta</label>
@@ -68,7 +66,7 @@
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4"class="text-light">CBU</label>
-      <input type="email" class="form-control"value="<%=cuenta.getCBU()%>"  id="inputEmail">
+      <input type="text" class="form-control"value="<%=cuenta.getCBU()%>"  id="inputEmail">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4"class="text-light">Saldo límite</label>

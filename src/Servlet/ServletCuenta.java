@@ -42,28 +42,23 @@ public class ServletCuenta extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/ListarCuentasAdmin.jsp");   
 	        rd.forward(request, response);
 			
-				}
+		}
 		if(request.getParameter("btnAceptar")!=null) {
 			Cuentas cuenta=new Cuentas();
-			String tipoCuenta=" ";
-			String DNIusuario= null;
-			int idCuenta= 0;
-			float saldo=0;
+			float saldo;
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			LocalDate fechanueva= LocalDate.now();
 			String fecha =fechanueva.toString();
-			DNIusuario=request.getParameter("txtDNI");
-			saldo=Integer.parseInt(request.getParameter("txtSaldo"));
-			CuentaNegocio negocio=new CuentaNegocio();
-			Persona_Negocio negocio2= new Persona_Negocio();
+			saldo=Float.parseFloat(request.getParameter("txtSaldo"));
+			CuentaNegocio negocioCuenta=new CuentaNegocio();
 			Persona user=new Persona();
-			user=negocio.Obtener_usuario(DNIusuario);
+			user=negocioCuenta.Obtener_usuario(request.getParameter("txtDNI"));
 			cuenta.setNumeroCuenta(request.getParameter("NumeroCuenta"));
 			cuenta.setCBU(request.getParameter("txtCBU"));
 			cuenta.setSaldo(saldo);
 			cuenta.setIdPersona(user);
 			cuenta.setIdtipo(Integer.parseInt(request.getParameter("seleccionCuenta")));
-			negocio.AgregarCuenta(cuenta,fecha);
+			negocioCuenta.AgregarCuenta(cuenta,fecha);
 			RequestDispatcher rd=request.getRequestDispatcher("AltaCuenta.jsp");  	  
 	 		rd.forward(request, response);
 		}
@@ -76,18 +71,7 @@ public class ServletCuenta extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/ListarCuentasAdmin.jsp");  
 				       rd.forward(request, response);
 		}
-			if(request.getParameter("btnDetalle_Cuenta")!=null) {
-				int id =Integer.parseInt(request.getParameter("idCuenta"));
-			    CuentaNegocio Negocio = new CuentaNegocio();
-			    Cuentas cuenta= Negocio.BuscarCuentasXID(id);
-			    Persona usuario = new Persona();
-			    Persona_Negocio perneg=new Persona_Negocio();
-			    usuario=perneg.BuscarUsuarioXID(cuenta.getIdPersona().getID());
-				request.setAttribute("cuenta", cuenta);
-				request.setAttribute("usuario", usuario);		
-				RequestDispatcher rd = request.getRequestDispatcher("/DetalleCuenta.jsp");   
-		        rd.forward(request, response);
-			}
+			
 			if(request.getParameter("btnVolver")!=null) {
 				CuentaNegocio negocio=new CuentaNegocio();
 			    ArrayList<Cuentas> lista =negocio.listaCuentas();
@@ -101,7 +85,15 @@ public class ServletCuenta extends HttpServlet {
 		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	
+		if(request.getParameter("btnDetalle_Cuenta")!=null) {
+			int id =Integer.parseInt(request.getParameter("idCuenta"));
+    		CuentaNegocio negocioCuenta =new CuentaNegocio();
+    		Cuentas cuenta = new Cuentas();
+    		cuenta =  negocioCuenta.BuscarCuentasXID(id);
+    		request.setAttribute("cuenta", cuenta);	
+			RequestDispatcher rd = request.getRequestDispatcher("/DetalleCuenta.jsp");
+	        rd.forward(request, response);
+		}
 		
 		
 	}

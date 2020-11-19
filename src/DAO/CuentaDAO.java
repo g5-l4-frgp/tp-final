@@ -246,7 +246,9 @@ public class CuentaDAO {
 			}			
 				Connection cn = null;
 				Cuentas aux = new Cuentas();
-				
+				Direccion direccion = new Direccion();
+				Contacto contacto = new Contacto();
+				Persona persona = new Persona();
 				try {
 					
 					cn = DriverManager.getConnection(host+dbName, user,pass);
@@ -261,8 +263,27 @@ public class CuentaDAO {
 						aux.setCBU(resultado.getString("CBU"));
 						aux.setSaldo(Float.parseFloat(resultado.getString("saldo")));
 						aux.setFechaCreacion(resultado.getDate("fechaCreacion"));
-						aux.setID(Integer.parseInt(resultado.getString("idCuenta")));
-						
+						direccion.setAltura(resultado.getString("altura"));
+						direccion.setID(Integer.parseInt(resultado.getString("idDireccion")));
+						direccion.setCalle(resultado.getString("calle"));
+						direccion.setLocalidad(resultado.getString("localidad"));
+						direccion.setProvincia(resultado.getString("provincia"));
+						contacto.setID(Integer.parseInt(resultado.getString("idContacto")));
+						contacto.setEmail(resultado.getString("email"));
+						contacto.setTelefono(resultado.getString("telefono"));
+						persona.setID(Integer.parseInt(resultado.getString("idUsuario")));
+						persona.setApellido(resultado.getString("apellido"));
+						persona.setNombre(resultado.getString("nombre"));
+						persona.setDNI(resultado.getString("DNI"));
+						persona.setCuil(resultado.getString("CUIL"));
+						persona.setFecha(resultado.getDate("fechaNacimiento"));
+						persona.setDireccion(direccion);
+						persona.setContacto(contacto);
+						persona.setNacionalidad(resultado.getString("nacionalidad"));
+						persona.setNickUsuario(resultado.getString("nickUsuario"));
+						persona.setSexo(resultado.getString("sexo"));
+						persona.setEstado(Boolean.parseBoolean(resultado.getString("estado")));
+						aux.setIdPersona(persona);
 					}
 					
 				}
