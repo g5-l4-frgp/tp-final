@@ -48,7 +48,7 @@ lista = (ArrayList<Prestamos>)request.getAttribute("listaPrestamos");
 %>
     <tr class="text-light">
       <form action="Controlador" method="get">
-      <td><%=e.getCuotasPagas()%><input type="hidden" name="idUsuario" value="<%=e.getCuota().getCuota()%>"></td>
+
       <td><%=e.getCantidadCuotas()%></td>
       <td><%=e.getCliente().getDNI()%></td>
     

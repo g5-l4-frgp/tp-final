@@ -12,14 +12,16 @@
 <Style>
  	.Alta{
  	width: 100%;
-    max-width: 600px;
+    max-width: 1200px;
     padding: 15px;
-    margin: auto;
+    margin:0 0 0 300px;
+    color: white;
  	    }
  	 .crear{
- 	  	width: 100%;
+ 	  	width: 25%;
+ 	  	
  
-    margin: auto;
+		margin:10px 0 0 35%;
  	 }
  	 
  	    #Fondo{
@@ -27,50 +29,53 @@
      }
 </Style>
 <title>Alta de cliente</title>
+<meta charset="UTF-8">
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-<div class="container">
-<h1 class="mt-3 text-center mb-1 text-info">Alta de cliente</h1>
+
+<div class="container-fluid">
+<h1 class="mt-3 text-center mb-1 text-info" style="margin:auto;">Alta de cliente</h1>
 <form action="Controlador" method="get" class="Alta">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Usuario</label>
-      <input type="text" class="form-control" name="txtUsuario">
+      <input type="text" class="form-control" name="txtUsuario" required >
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" name="txtPassword">
+      <input type="password" class="form-control" name="txtPassword" required>
     </div>
   </div>
     <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-12">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="txtEmail">
+      <input type="email" class="form-control" name="txtEmail" required>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Telefono</label>
-      <input type="text" class="form-control" name="txtTelefono">
-    </div>
+
   </div>
     <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Cuil</label>
-      <input type="text" class="form-control" name="txtCuil">
+        <div class="form-group col-md-4">
+      <label for="inputPassword4">Telefono</label>
+      <input type="number" class="form-control" name="txtTelefono" required>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Dni</label>
-      <input type="text" class="form-control" name="txtDni">
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">Cuil</label>
+      <input type="number" class="form-control" name="txtCuil" required>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">DNI</label>
+      <input type="number" class="form-control" name="txtDni" required>
     </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-4">
       <label for="inputEmail4">Nombre</label>
-      <input type="text" class="form-control" name="txtNombre">
+      <input type="text" class="form-control" name="txtNombre" required>
     </div>
     <div class="form-group col-md-4">
       <label for="inputPassword4">Apellido</label>
-      <input type="text" class="form-control" name="txtApellido">
+      <input type="text" class="form-control" name="txtApellido" required>
         </div>
           <div class="form-group col-md-4">
       <label for="inputState">Sexo</label>
@@ -85,11 +90,11 @@
         <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Fecha de nacimiento</label>
-      <input type="date" class="form-control" name="txtFechaNacimiento">
+      <input type="date" class="form-control" id="fechaNac" name="txtFechaNacimiento" required>
     </div>
  <div class="form-group col-md-6">
       <label for="inputCity">Nacionalidad</label>
-      <input type="text" class="form-control" name="txtNacionalidad">
+      <input type="text" class="form-control" name="txtNacionalidad" required>
     </div>
 
   </div>
@@ -97,28 +102,68 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputAddress">Calle</label>
-    <input type="text" class="form-control" id="inputAddress"  name="txtCalle">
+    <input type="text" class="form-control" id="inputAddress"  name="txtCalle" required>
   </div>
     <div class="form-group col-md-6">
     <label for="inputAddress">Altura</label>
-    <input type="text" class="form-control" id="inputAddress" name="txtAltura">
+    <input type="number" class="form-control" id="inputAddress" name="txtAltura" required>
   </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Provincia</label>
-      <input type="text" class="form-control" name="txtProvincia">
+         <select class="form-control" name="txtProvincia">
+        <option selected>Seleccionar...</option>
+        <option value="Buenos Aires">Buenos Aires</option>
+        <option value="Catamarca">Catamarca</option>
+        <option value="Chaco">Chaco</option>
+        <option value="Chubut">Chubut</option>
+        <option value="Cordoba">Cordoba</option>
+        <option value="Corrientes">Corrientes</option>
+        <option value="Entre Ríos">Entre Ríos</option>
+        <option value="Formosa">Formosa</option>
+        <option value="Jujuy">Jujuy</option>
+        <option value="La Pampa">La Pampa</option>
+        <option value="La Rioja">La Rioja</option>
+        <option value="Mendoza">Mendoza</option>
+        <option value="Misiones">Misiones</option>
+        <option value="Neuquen">Neuquen</option>
+        <option value="Rio Negro">Rio Negro</option>
+        <option value="Salta">Salta</option>
+        <option value="San Juan">San Juan</option>
+        <option value="San Luis">San Luis</option>
+        <option value="Santa Cruz">Santa Cruz</option>
+        <option value="Santa Fe">Santa Fe</option>
+        <option value="Santiago del Estero">Santiago del Estero</option>
+        <option value="Tierra del Fuego">Tierra del Fuego</option>
+        <option value="Tucuman">Tucuman</option>
+      </select>
     </div>
  <div class="form-group col-md-6">
       <label for="inputCity">Localidad</label>
-      <input type="text" class="form-control" name="txtLocalidad">
+      <input type="text" class="form-control" name="txtLocalidad" required>
     </div>
 
   </div>
   
 	<input type="submit" class="btn btn-primary crear" value="Crear cliente" name="btnAceptar">
   
+  <script >
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear()-18;
+   if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+  document.getElementById("fechaNac").setAttribute("max", today);
+  </script>
 </form>
 </div>
 </body>

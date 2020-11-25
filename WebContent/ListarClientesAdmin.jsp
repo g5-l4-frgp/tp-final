@@ -19,7 +19,7 @@
  	{
  	
  	width: 100%;
-    max-width: 40%;
+    max-width: 60%;
     padding: 15px;
     margin: auto;
     margin-top:15px;
@@ -28,50 +28,52 @@
  	{
  	
  	width: 20%;
- 	margin-left: 59%;
+ 	margin: 10px 0 10px 200px;	
+ 	}
+ 	#crear
+ 	{
+ 	
+ 	width: 15%;
+ 	margin: 10px 10px 10px 225px;	
  	}
  	.Mover
  	{
- 	
 		margin-right: 20px;
-		margin-top: 5px;
+		margin-top: 50px;
  	}
  	 #Fondo{
         background-color:#020648;
      }
- 	 
+
 </Style>
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
      <form action="Controlador" method="get">
-<div class="container Mover  ">
-<div class="row mt-5  ">
 
-      <input type="text" class="form-control" id="Filtrar">
-      <button type="submit" class="btn btn-primary ml-2 ">Buscar</button>
-    </div>
-
-    <div class="row mt-5  ">
-      <button type="submit" class="btn btn-primary ml-2" name="btnCrearUsuario">Crear Usuario</button>
-    </div>
-
-    </div>
 <%
 ArrayList<Persona> lista = new ArrayList<Persona>();
 Persona usuario = new Persona();
 lista = (ArrayList<Persona>)request.getAttribute("lista");
 %>
-<div class="container">
+<div class="container " style="margin-top: 50px;">
+<div class="container mover">
+    <div class="row  ">
+      <button type="submit" class="btn btn-primary " id="crear" name="btnCrearUsuario">Crear Usuario</button>
+       <input type="text" class="form-control"  id="Filtrar">
+       <button type="submit" class="btn btn-primary ">Buscar</button>
+    </div>
+
+    </div>
 <table class="table ">
   <thead class="thead-light">
     <tr >
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col">Eliminar</th>
-      <th scope="col">Crear cuenta</th>
-      <th scope="col">Detalles</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
      
     </tr>
   </thead>
