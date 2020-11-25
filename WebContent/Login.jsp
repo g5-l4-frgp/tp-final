@@ -27,18 +27,19 @@
 <title>Login</title>
 </head>
 <body  id="Fondo">
+<jsp:include page="MenuLogin.html"></jsp:include>
 <div class="container">
-<form class="form-signin">
-
-
-  <div class="form-label-group">
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-    <label for="inputEmail"class="text-light">Email address</label>
+<h1 class="mt-3 text-center mb-4 text-info text-info ">Iniciar sesión</h1>
+<form action="ServletLogin" method="get" class="form-signin">
+  	<div class="form-label-group">
+    <input type="text" id="inputEmail" class="form-control" name="txtUsuario" placeholder="Usuario " required="" autofocus="">
+    <label for=""class="text-light">Cuenta Usuario</label>
   </div>
 
   <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <label for="inputPassword"class="text-light">Password</label>
+    <input type="password" id="inputPassword" class="form-control" name="txtPassword" placeholder="Password" >
+    <label for=""class="text-light">Password</label>
+    
   </div>
 
   <div class="checkbox mb-3">
@@ -46,7 +47,7 @@
       <input type="checkbox" value="remember-me"> Remember me
     </label>
   </div>
-  <button id="boton"   class="btn btn-lg btn-primary btn-block text-light" type="submit">Sign in</button>
+  <button id="boton"   class="btn btn-lg btn-primary btn-block text-light"name="btnAceptar" type="submit">Sign in</button>
   <p class="mt-5 mb-3 text-muted text-center text-light">© 2017-2020</p>
 </form>
 </div>

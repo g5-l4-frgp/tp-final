@@ -31,10 +31,10 @@
 <body id="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light">Transferencia a cuenta propia</h1>
+<h1 class="mt-3 text-center mb-1 text-info text-info">Transferencia a cuenta propia</h1>
 <form class="Alta">
   <div class="form-row">
-           <div class="form-group col-md-6">
+           <div class="form-group col-md-4">
       <label for="inputState"class="text-light">Cuenta de origen</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
@@ -42,12 +42,21 @@
         <option>Opcion 2</option>
       </select>
     </div>
-   <div class="form-group col-md-6">
+   <div class="form-group col-md-4">
       <label for="inputState"class="text-light">Cuenta de destino</label>
       <select id="inputState" class="form-control">
         <option selected>Seleccionar...</option>
         <option>Opcion 1</option>
         <option>Opcion 2</option>
+      </select>
+   </div>
+   <div class="form-group col-md-4">
+      <label for="inputState"class="text-light">Concepto</label>
+      <select id="inputState" class="form-control">
+        <option selected>Seleccionar...</option>
+        <option>Seguro</option>
+        <option>Alquiler</option>
+        <option>Varios</option>
       </select>
    </div>
   </div>

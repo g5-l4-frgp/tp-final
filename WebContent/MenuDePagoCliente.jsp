@@ -36,10 +36,10 @@
   </thead>
   <tbody class="text-light">
     <tr>
-      <td>Volkom</td>
-      <td>8</td>
-      <td>12</td>
-      <td><button type="submit" class="btn btn-success boton ">Abonar</button></td>  
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><button type="submit" class="btn btn-success boton " value="btnAbonar">Abonar</button></td>  
     
   
   </tbody>
