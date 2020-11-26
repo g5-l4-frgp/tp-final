@@ -25,7 +25,7 @@
 <title>Pantalla principal</title>
 </head>
 <body id="Fondo">
-<jsp:include page="MenuCliente.html"></jsp:include>
+<jsp:include page="MenuAdmin.html"></jsp:include>
 	<!-- Librerias opcionales -->
 
 

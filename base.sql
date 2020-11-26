@@ -1,5 +1,5 @@
 create schema db_Banco;
-
+SET GLOBAL time_zone = '-3:00';
 
 use db_Banco;
 
@@ -44,7 +44,7 @@ create table cuentas
 	idUsuario INT,
 	fechaCreacion DATETIME,
 	CBU VARCHAR(22),
-    Numerocuenta VARCHAR(12),
+    Numerocuenta VARCHAR(13),
 	saldo FLOAT,
 	estado bit,
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
@@ -66,8 +66,8 @@ create table prestamos
 	idMovimiento INT,
 	importeConIntereses FLOAT,
 	importePedido FLOAT,
-	plazoPago INT,
 	pagoMesual FLOAT,
+    fechapedido date,
 	cantidadCuotas INT,
 	idCuenta INT,
 	estado bit,
@@ -76,14 +76,15 @@ create table prestamos
 );
 create table Cuotas
 (
-	idCuota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	idCuota INT  NOT NULL AUTO_INCREMENT,
 	idPrestamo INT NOT NULL,
-	fechaMes DATE,
+	fechaMes varchar(10),
 	importe FLOAT, 
 	fechaVencimiento DATE NOT NULL,
-    fechaPago DATE NOT NULL,
-    estado bit,
-    FOREIGN KEY (idPrestamo) REFERENCES prestamos(idPrestamo)
+    fechaPago DATE,
+    estado int,
+    PRIMARY KEY (idCuota,idPrestamo)
+    
 );
 create table transferencias
 (
@@ -154,10 +155,9 @@ DELIMITER $$
 		)
     
 	BEGIN
-	UPDATE usuario set estado = 0 where idUsuario = IdUsuario;
+	UPDATE usuario as u set estado = 0 where u.idUsuario = IdUsuario;
 END$$
-DELIMITER $$
-CREATE PROCEDURE SP_ListarUsuario(
+CREATE PROCEDURE SP_ListarClientes(
         
 		)
 
@@ -176,7 +176,7 @@ DELIMITER $$
     
 	BEGIN
 	
-	select  u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
+	select  u.idUsuario,u.nombre, u.apellido,u.nickUsuario, u.DNI, u.CUIL,
 	u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
 	inner join direccion as d on d.idDireccion=u.idDireccion
 	inner join contacto as c on c.idContacto = u.idContacto
@@ -256,7 +256,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE SP_ListarCuentas()
 BEGIN
-		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion, u.nombre, u.apellido from cuentas as c
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion,c.idCuenta, u.nombre, u.apellido,u.DNI from cuentas as c
 		inner join usuario as u on u.idUsuario = c.idUsuario
 where c.Estado = 1;
    END$$
@@ -265,6 +265,181 @@ where c.Estado = 1;
        IN idcuenta int
 )
 BEGIN
-UPDATE usuario set estado = 0 where idCuenta = Idcuenta;
+UPDATE cuentas as c set estado = 0 where c.idCuenta = Idcuenta;
 END$$
-CALL SP_ListarCuentas
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuenta(
+        IN numerocuenta VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	Select * from cuentas as c
+	where  c.Numerocuenta  =  numerocuenta;
+END$$
+DELIMITER $$
+	CREATE PROCEDURE SP_ModificarCuenta(
+	
+		IN IdCuenta int,
+		IN Saldo FLOAT
+        )
+        
+	BEGIN
+
+		UPDATE cuentas as c set c.saldo = Saldo
+		where IdCuenta = c.idCuenta;
+		
+	END$$
+    
+    
+    DELIMITER $$
+    CREATE PROCEDURE SP_BuscarCuentaxId(
+        IN Idcuenta INT
+		)
+    
+	BEGIN
+	select cu.idCuenta, cu.idTipo, cu.idUsuario, cu.CBU, cu.Numerocuenta, cu.saldo, cu.fechaCreacion, u.idUsuario, u.idDireccion,
+    u.nombre, u.apellido, u.nickUsuario, u.idContacto, u.DNI, u.CUIL, u.sexo, u.nacionalidad, u.fechaNacimiento, u.estado,
+    d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from cuentas as cu
+    inner join usuario as u on u.idUsuario = cu.idUsuario
+    inner join contacto as c on u.idContacto = c.idContacto
+    inner join direccion as d on u.idDireccion = d.idDireccion
+	where cu.idCuenta = idcuenta;
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarCuentasXId(
+	IN IdUsuario INT
+)
+BEGIN
+		select  c.idTipo, c.idUsuario, c.Numerocuenta, c.CBU, c.saldo , c.fechaCreacion,c.idCuenta, u.nombre, u.apellido,u.DNI from cuentas as c
+		inner join usuario as u on u.idUsuario = c.idUsuario
+		where u.idUsuario = IdUsuario;
+   END$$
+   DELIMITER $$
+    CREATE PROCEDURE SP_BuscarUsuarioxNick(
+        IN Nick VARCHAR(25)
+		)
+    
+	BEGIN
+	
+	select  u.idUsuario, u.nombre,u.TipoUsuario, u.apellido, u.nickUsuario,u.Contraseña, u.DNI, u.CUIL,
+	u.sexo, u.nacionalidad, u.fechaNacimiento, d.calle, d.altura, d.localidad, d.provincia, c.email, c.telefono  from usuario as u
+	inner join direccion as d on d.idDireccion=u.idDireccion
+	inner join contacto as c on c.idContacto = u.idContacto
+	where u.nickUsuario = Nick;
+END$$
+ DELIMITER $$
+       CREATE PROCEDURE SP_AltaPrestamo(
+       
+       IN IDCliente int,
+       IN IDMovimiento int,
+       IN importeIntereses float,
+       IN ImportePedido float,
+       IN PagoMesual float,
+       IN Fechapedido date,
+       IN CantidadCuotas int,
+       IN IDCuenta int,
+       IN Estado int
+      
+)
+BEGIN
+INSERT prestamos (idCliente,idMovimiento,importeConIntereses,importePedido,pagoMesual,fechapedido,cantidadCuotas,idCuenta,estado)
+values(IDCliente,IDMovimiento,importeIntereses,ImportePedido,PagoMesual,Fechapedido,CantidadCuotas,IDCuenta,Estado);
+END$$
+DELIMITER $$
+       CREATE PROCEDURE SP_ModificarPrestamo(
+       IN IDPrestamo int,
+       IN Estado int
+)
+BEGIN
+UPDATE prestamos set estado = Estado where idPrestamo = IDPrestamo;
+END$$
+DELIMITER $$
+       CREATE PROCEDURE SP_AltaMovimiento(
+       IN IdMovimiento int,
+       IN Fecha DATE,
+       IN Detalle VARCHAR(30),
+       IN IDCuenta int,
+       IN Estado int
+	
+)
+BEGIN
+INSERT prestamos (idMovimiento,fecha,detalle,idCuenta,estado)
+values(IdMovimiento,Fecha,Detalle,IDCuenta,Estado);
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarPrestamos()
+BEGIN
+		select p.idPrestamo,p.idCliente,p.idMovimiento,p.importeConIntereses,p.importePedido,p.pagoMesual,p.fechapedido,p.cantidadCuotas,p.idCuenta,p.estado,u.DNI from prestamos as p
+        inner join usuario as u on u.idUsuario=p.idCliente;
+       
+	
+END$$
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarPrestamoxId(
+        IN Idprestamo INT
+		)
+    
+	BEGIN
+	select p.idPrestamo,p.idCliente,p.idMovimiento,p.importeConIntereses,p.importePedido,p.pagoMesual,p.fechapedido,p.cantidadCuotas,p.idCuenta,p.estado,u.DNI,u.nombre,u.apellido,c.Numerocuenta from prestamos as p
+	inner join usuario as u
+    inner join cuentas as c
+	where p.idPrestamo = Idprestamo;
+  END$$
+  
+DELIMITER $$
+CREATE PROCEDURE SP_AltaCuotas(
+       
+	IdPrestamo INT ,
+	FechaMes varchar(10),
+	Importe FLOAT, 
+	FechaVencimiento DATE,
+    Estado int
+      
+)
+BEGIN
+INSERT INTO  cuotas (idPrestamo,fechaMes,importe,fechaVencimiento,estado)
+values(IdPrestamo,FechaMes,Importe,FechaVencimiento,Estado);
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_AltaTransferencia(
+IN Importe FLOAT,
+IN IdMovimiento INT,
+       IN CuentaDestino INT,
+IN IdCuenta INT,
+IN Estado bit
+       )
+BEGIN
+INSERT INTO transferencias (importe, idMovimiento, cuentaDestino, idCuenta, estado)
+values (Importe, IdMovimiento, CuentaDestino, IdCuenta, Estado);
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_AgregarMovimiento(
+IN Fecha DATE,
+IN Detalle VARCHAR(30),
+IN IdCuenta INT,
+IN Estado bit
+       )
+BEGIN
+INSERT INTO movimientos (fecha, detalle, idCuenta, estado)
+values (Fecha, Detalle, IdCuenta, Estado);
+END$$
+DELIMITER $$
+CREATE PROCEDURE SP_ListarCuotas(
+	In Idprestamo int
+
+)
+
+select c.FechaMes,c.importe,c.fechaVencimiento,c.estado,c.idPrestamo from cuotas as c
+where c.idPrestamo=2;
+END$$
+DELIMITER $$
+    CREATE PROCEDURE SP_BuscarPrestamoxIdUsuario(
+        IN Idusuario INT
+		)
+	BEGIN
+	select p.idPrestamo,p.idCliente,p.idMovimiento,p.importeConIntereses,p.importePedido,p.pagoMesual,p.fechapedido,p.cantidadCuotas,p.idCuenta,p.estado,u.DNI,u.nombre,u.apellido,c.Numerocuenta from prestamos as p
+	inner join usuario as u
+    inner join cuentas as c
+	where p.idCliente = Idusuario;
+  END$$
