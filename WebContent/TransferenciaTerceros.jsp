@@ -1,3 +1,6 @@
+<%@page import="Entidad.Cuentas"%>
+<%@page import="Entidad.Cuotas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,41 +24,57 @@
  
     margin: auto;
  	 }
- 	 
- 	    #Fondo{
-        background-color:#020648;
-     }
+ 
 </Style>
 <title>Transferencia a terceros</title>
 </head>
 <body id="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light ">Transferencia a terceros</h1>
-<form class="Alta">
+<form class="Alta" method="get" action="ServletTranferencia">
+<%
+
+ArrayList<Cuentas> listaPersonal = new ArrayList<Cuentas>();
+listaPersonal = (ArrayList<Cuentas>)request.getAttribute("listaCuentas");
+%>
+<h1 class="mt-3 text-center mb-1 text-info text-info">Transferencia a terceros</h1>
   <div class="form-row">
-           <div class="form-group col-md-6">
-      <label for="inputState"class="text-light">Cuenta de origen</label>
-      <select id="inputState" class="form-control">
+           <div class="form-group col-md-4">
+            <label for="inputState"class="text-light">Cuenta de origen</label>
+      <select id="inputState" name="CuentaOrigen"class="form-control">
         <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
+	  <% if(listaPersonal!=null){
+  		 for(Cuentas e : listaPersonal)
+		{
+  			 
+		%>
+        <option value="<%=e.getID()%>"><%=e.getNumeroCuenta()%></option>
+ 	<%  } 
+  		 }%>
+  		 </select>
+  		  </div>
+    <div class="form-group col-md-4">
       <label for="inputEmail4"class="text-light">CBU (Destino)</label>
-      <input type="text" class="form-control" id="inputEmail">
+      <input type="text" class="form-control" name="CBU" id="">
     </div>
+      <div class="form-group col-md-4">
+      <label for="inputState"class="text-light">Concepto</label>
+      <select id="inputState" name="Concepto" class="form-control">
+        <option selected>Seleccionar...</option>
+        <option value="Seguro">Seguro</option>
+        <option value="Alquiler">Alquiler</option>
+        <option value="Varios">Varios</option>
+      </select>
+   </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-12">
       <label id="lblMonto" for="lblMonto"class="text-light">Monto</label>
-      <input type="text" class="form-control" id="inputMonto">
+      <input type="text" class="form-control" name="txtMonto" id="inputMonto">
     </div>
-    
-  </div>
+      </div>
 
-  <button type="submit" class="btn btn-primary crear mt-2 text-light">Transferir</button>
+  <button type="submit" class="btn btn-primary crear mt-2 text-light" name="btnTranferencia">Transferir</button>
 </form>
 </div>
 </body>

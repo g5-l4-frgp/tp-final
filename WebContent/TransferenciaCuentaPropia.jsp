@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page import="Entidad.Cuentas"%>
+<%@page import="Entidad.Cuotas"%>
+<%@page import="java.util.ArrayList"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,44 +24,69 @@
     margin: auto;
  	 }
  	 
- 	    #Fondo{
-        background-color:#020648;
-     }
+ 	   
 </Style>
 <title>Tranferencia a cuenta propia</title>
 </head>
 <body id="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info text-light">Transferencia a cuenta propia</h1>
-<form class="Alta">
+<h1 class="mt-3 text-center mb-1 text-info text-info">Transferencia a cuenta propia</h1>
+<form class="Alta" method="get" action="ServletTranferencia">
+<%
+ArrayList<Cuentas> listaPersonal1 = new ArrayList<Cuentas>();
+ArrayList<Cuentas> listaPersonal = new ArrayList<Cuentas>();
+listaPersonal1 = (ArrayList<Cuentas>)request.getAttribute("listaCuentas1");
+listaPersonal = (ArrayList<Cuentas>)request.getAttribute("listaCuentas");
+%>
   <div class="form-row">
-           <div class="form-group col-md-6">
+           <div class="form-group col-md-4">
       <label for="inputState"class="text-light">Cuenta de origen</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" name="CuentaOrigen"class="form-control">
         <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
+	  <% if(listaPersonal!=null){
+  		 for(Cuentas e : listaPersonal1)
+		{
+  			 
+		%>
+        <option value="<%=e.getID()%>"><%=e.getNumeroCuenta()%></option>
+ 	<%  } 
+  		 }%>
       </select>
     </div>
-   <div class="form-group col-md-6">
+   <div class="form-group col-md-4">
       <label for="inputState"class="text-light">Cuenta de destino</label>
-      <select id="inputState" class="form-control">
+        <select id="inputState"name="CuentaDestino" class="form-control">
         <option selected>Seleccionar...</option>
-        <option>Opcion 1</option>
-        <option>Opcion 2</option>
+  <% if(listaPersonal!=null){
+  		 for(Cuentas e : listaPersonal)
+		{
+  			 
+		%>
+        <option value="<%=e.getID()%>"><%=e.getNumeroCuenta()%></option>
+ 		<%  } 
+  		 }%>
+      </select>
+   </div>
+   <div class="form-group col-md-4">
+      <label for="inputState"class="text-light">Concepto</label>
+      <select id="inputState" name="Conceptos" class="form-control">
+        <option selected>Seleccionar...</option>
+        <option value="Seguro">Seguro</option>
+        <option value="Alquiler">Alquiler</option>
+        <option value="Varios">Varios</option>
       </select>
    </div>
   </div>
     <div class="form-row">
     <div class="form-group col-md-12">
       <label id="lblMonto" for="lblMonto"class="text-light">Monto</label>
-      <input type="text" class="form-control" id="inputMonto">
+      <input type="text" class="form-control" name="txtMonto" id="inputMonto">
     </div>
     
   </div>
 
-  <button type="submit" class="btn btn-primary crear mt-2 text-light">Transferir</button>
+  <button type="submit" class="btn btn-primary crear mt-2 text-light" name="btnTransferir">Transferir</button>
 </form>
 </div>
 </body>
