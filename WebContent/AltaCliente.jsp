@@ -12,72 +12,73 @@
 <Style>
  	.Alta{
  	width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 15px;
-    margin:0 0 0 300px;
+    margin:0 0 0 20px;
     color: white;
  	    }
  	 .crear{
  	  	width: 25%;
- 	  	
- 
-		margin:10px 0 0 35%;
+		margin:10px 0 0 25%;
  	 }
  	 
  	    #Fondo{
         background-color:#020648;
      }
+     
 </Style>
+
 <title>Alta de cliente</title>
 <meta charset="UTF-8">
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
 
-<div class="container-fluid">
-<h1 class="mt-3 text-center mb-1 text-info" style="margin:auto;">Alta de cliente</h1>
+<div class="row">
+<div class="col-8">
+<div class="container" style="background-color:black; margin-left:10px;">
+<h1 class="mt-3 text-center mb-1 text-info" style="margin:auto;">ALTA DE CLIENTE</h1>
 <form action="Controlador" method="get" class="Alta">
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputEmail4">Usuario</label>
       <input type="text" class="form-control" name="txtUsuario" required >
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputPassword4">Password</label>
       <input type="password" class="form-control" name="txtPassword" required>
     </div>
   </div>
     <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
       <input type="email" class="form-control" name="txtEmail" required>
     </div>
-
   </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
       <label for="inputPassword4">Telefono</label>
       <input type="number" class="form-control" name="txtTelefono" required>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <label for="inputEmail4">Cuil</label>
       <input type="number" class="form-control" name="txtCuil" required>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <label for="inputPassword4">DNI</label>
       <input type="number" class="form-control" name="txtDni" required>
     </div>
   </div>
     <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <label for="inputEmail4">Nombre</label>
       <input type="text" class="form-control" name="txtNombre" required>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <label for="inputPassword4">Apellido</label>
       <input type="text" class="form-control" name="txtApellido" required>
         </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
       <label for="inputState">Sexo</label>
       <select class="form-control" name="ddlSexo">
         <option selected>Seleccionar...</option>
@@ -88,11 +89,11 @@
       </div>
       
         <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputCity">Fecha de nacimiento</label>
       <input type="date" class="form-control" id="fechaNac" name="txtFechaNacimiento" required>
     </div>
- <div class="form-group col-md-6">
+ <div class="form-group col-md-3">
       <label for="inputCity">Nacionalidad</label>
       <input type="text" class="form-control" name="txtNacionalidad" required>
     </div>
@@ -100,18 +101,18 @@
   </div>
       
   <div class="form-row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-3">
     <label for="inputAddress">Calle</label>
     <input type="text" class="form-control" id="inputAddress"  name="txtCalle" required>
   </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
     <label for="inputAddress">Altura</label>
     <input type="number" class="form-control" id="inputAddress" name="txtAltura" required>
   </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputCity">Provincia</label>
          <select class="form-control" name="txtProvincia">
         <option selected>Seleccionar...</option>
@@ -140,11 +141,10 @@
         <option value="Tucuman">Tucuman</option>
       </select>
     </div>
- <div class="form-group col-md-6">
+ <div class="form-group col-md-3">
       <label for="inputCity">Localidad</label>
       <input type="text" class="form-control" name="txtLocalidad" required>
     </div>
-
   </div>
   
 	<input type="submit" class="btn btn-primary crear" value="Crear cliente" name="btnAceptar">
@@ -165,6 +165,30 @@
   document.getElementById("fechaNac").setAttribute("max", today);
   </script>
 </form>
+</div>
+</div>
+<div class="col-4" style="margin-top:20px; background-color:#42A975;">
+	<a href=""> <img alt="" src="https://www.bbva.com/wp-content/uploads/2019/06/A-0706-VideoNoticia-BBVA-1920x1180.jpg" style="margin-top:10px; max-height:350px; max-widht:200px; min-widht:200px">
+    </a>
+    <div class="row">
+    <a href=""> <img alt="" src="https://controlpublicidad.com/uploads/2019/06/bbva-nueva-identidad-085239.jpg" style="max-height:350px; max-widht:400px; margin-top:10px; margin-left:20px;">
+    </a>    
+    </div>
+</div>
+</div>
+<div class="jumbotron" style="margin-top:70px; background-color:#717573;">
+  <div class="container">
+    <h1 style="text-align:center; margin-bottom:50px;">Contactanos</h1>
+    <a href=""> <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png" style="max-height:70px; max-widht:20px; margin-left:450px;">
+    </a>
+    <a href=""> <img alt="" src="https://images.vexels.com/media/users/3/137419/isolated/preview/b1a3fab214230557053ed1c4bf17b46c-icono-de-twitter-logo-by-vexels.png" style="max-height:70px; max-widht:20px;">
+    </a>
+    <a href=""> <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" style="max-height:70px; max-widht:20px;">
+    </a>    
+    
+    <p class="mt-5 mb-3 text-muted text-center text-light" style="background-color:white;">© 2017-2020</p>
+  
+  </div>
 </div>
 </body>
 </html>

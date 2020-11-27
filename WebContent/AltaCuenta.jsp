@@ -32,19 +32,22 @@
 </head>
 <body id="Fondo">
 <jsp:include page="MenuAdmin.html"></jsp:include>
-<div class="container">
-<h1 class="mt-3 text-center mb-1 text-info  text-light">Alta de cuenta</h1>
+
+<div class="row">
+<div class="col-8">
+<div class="container" style="background-color:black; margin-left:10px;">
+<h1 class="mt-3 text-center mb-1 text-info  text-light" style="margin:auto;">ALTA DE CUENTA</h1>
 <form action="ServletCuenta" method="get" class="Alta">
 	<%
 	Cuentas cuenta= new Cuentas();
 	cuenta=(Cuentas)request.getAttribute("cuenta");
 	%>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputEmail4"class="text-light">DNI</label>
       <input type="text" class="form-control" id="inputDni" value="${cuenta.getIdPersona().getDNI()}" name="txtDNI">
     </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
       <label for="inputState"class="text-light">Tipo de cuenta</label>
       <select name="seleccionCuenta" class="form-control">
         <option selected>Seleccionar...</option>
@@ -58,7 +61,7 @@
       <label for="inputEmail4"class="text-light">CBU</label>
       <input type="text" class="form-control" value="${cuenta.getCBU()}" name="txtCBU">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputPassword4"class="text-light">Saldo</label>
       <input type="text" class="form-control" value="${cuenta.getSaldo()}" name="txtSaldo">
     </div>
@@ -66,6 +69,26 @@
   </div>
   <button type="submit" class="btn btn-primary crear" name="btnAceptar">Crear cuenta</button>
  </form>
+</div>
+</div>
+<div class="col-4" style="margin-top:20px; min-height:100px; max-weidht:50px; background-color:#42A975;">
+	<a href=""> <img alt="" src="https://www.bbva.com/wp-content/uploads/2019/06/A-0706-VideoNoticia-BBVA-1920x1180.jpg" style="margin-top:10px; max-height:260px; max-widht:50px; min-widht:50px">
+    </a>
+</div>
+</div>
+<div class="jumbotron" style="margin-top:70px; background-color:#717573;">
+  <div class="container">
+    <h1 style="text-align:center; margin-bottom:50px;">Contactanos</h1>
+    <a href=""> <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png" style="max-height:70px; max-widht:20px; margin-left:450px;">
+    </a>
+    <a href=""> <img alt="" src="https://images.vexels.com/media/users/3/137419/isolated/preview/b1a3fab214230557053ed1c4bf17b46c-icono-de-twitter-logo-by-vexels.png" style="max-height:70px; max-widht:20px;">
+    </a>
+    <a href=""> <img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" style="max-height:70px; max-widht:20px;">
+    </a>    
+    
+    <p class="mt-5 mb-3 text-muted text-center text-light" style="background-color:white;">© 2017-2020</p>
+  
+  </div>
 </div>
 </body>
 </html>
