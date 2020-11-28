@@ -47,7 +47,7 @@
 <body ID="Fondo">
 <jsp:include page="MenuCliente.html"></jsp:include>
 <div class="container">
-<h1 class="mt-3 text-center mb-1 text-info" ID="tituloEspacio">A</h1>
+<h1 class="mt-3 text-center mb-1 text-info" ID="tituloEspacio">Solicitar Prestamo</h1>
 <form class="Alta" method="get" action="ServletPrestamos">
   <%
 
