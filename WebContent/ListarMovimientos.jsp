@@ -47,7 +47,7 @@
     </div>
  	<div class="form-group col-md-6">
       <label for="inputCity" class="text-light">Hasta</label>
-      <input type="date" class="form-control" id="TamañoInput" name="txtHasta">
+      <input type="date" class="form-control"  Style="width: 40%;" id="TamañoInputHasta" name="txtHasta">
     </div>
   </div>
   
@@ -73,8 +73,25 @@
       <td class="text-danger"><b>+$10000<b></td>
       <td></td> 
     </tr>
+    
   </tbody>
 </table>
 </div>
+  <script >
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth();
+  var yyyy = today.getFullYear();
+   if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+  document.getElementById("TamañoInput").setAttribute("max", today);
+  document.getElementById("TamañoInputHasta").setAttribute("max", today);
+  </script>
 </body>
 </html>
