@@ -73,6 +73,15 @@
     </div>
       <button type="submit" class="btn btn-success crear" style="max-height:50px; width:100px; margin-top:25px; margin-left:250px;">Filtrar</button>
     </div>
+    <div>
+     <label Style="font-weight:bold;">Aprobado</label>
+      <input type="radio" name="radioEstado" value="1"> 
+           <label Style="font-weight:bold;">Rechazado</label>
+      <input type="radio" name="radioEstado" value="2"> 
+           <label Style="font-weight:bold;">Todos</label>
+      <input type="radio" name="radioEstado" value="0"> 
+ 
+    </div>
     </div>
     </div>
     </div>
