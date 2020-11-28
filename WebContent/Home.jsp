@@ -94,10 +94,9 @@
 
 <div class="jumbotron" style="margin-top:70px">
   <div class="container">
-    <h1>Lorem ipsum</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p><a class="btn btn-primary btn-lg" role="button">Leer más</a></p>
+    <h1>Bienvenidos a la plataforma digital de BBVA</h1>
+    <p>Si sos cliente de BBVA presioná en el siguiente botón para acceder a todas tus funciones.</p>
+    <p><a class="btn btn-primary btn-lg" role="button" href="/TPINT_GRUPO_5_LAB4/Login.jsp">Ingresá aquí</a></p>
   </div>
 </div>
 
