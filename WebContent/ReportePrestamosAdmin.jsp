@@ -104,23 +104,6 @@ lista = (ArrayList<Prestamos>)request.getAttribute("listaPrestamos");
      
     </tr>
   </thead>
-  <tbody>
-   <% if(lista!=null){
-  		 for(Prestamos e : lista)
-		{
-%>
-    <tr class="text-light">
-      <form action="ServletPrestamos" method="get">
-      
-      <td><%=e.getCliente().getDNI()%><input type="hidden" name="idPrestamo" value="<%=e.getIdPrestamo()%>"></td>
-      <td><%=e.getFechaSoli() %></td>
-      <td><button type="submit" class="btn btn-danger" name="btnSolicitud">Ver Solicitud</button></td> 
-
-    </form>
-    </tr>
-      <%  } 
-  		 }%>	
-  </tbody>
 </table>
 </div>
 </div>
